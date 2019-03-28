@@ -8,12 +8,13 @@
 				<h4 class="modal-title">Xác nhận xóa</h4>
 			</div>
 			<div class="modal-body">
+				<input type="text" class="form-control hidden" name="ID" id="IdDelete">
 				<p>Bạn có thực sự muốn xóa?&hellip;</p>
 				<p>*Dữ liệu sau khi xóa<br /> sẽ không thể khôi phục!*</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Hủy</button>
-				<button type="button" class="btn btn-outline" onclick="">Xác nhận</button>
+				<button type="button" class="btn btn-outline" data-dismiss="modal" onclick="Delete(id)">Xác nhận</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -21,3 +22,23 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+<script>
+	function ShowDelete(id) {
+		debugger
+		$("#IdDelete").val(id);
+		$("#Modal_Delete").modal("show");
+	};
+	function Delete() {
+		debugger
+		var Id = $("#IdDelete").val();
+		$.ajax({
+			url: "/TaiKhoan/Delete?id=" + Id,
+			type: "post",
+			dataType: "json",
+			success: function (data) {
+					location.reload();
+			}
+		})
+
+	};
+</script>

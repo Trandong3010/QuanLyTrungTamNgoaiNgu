@@ -12,7 +12,7 @@ namespace Education.DAO
 		QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
 		public Object GetList()
 		{
-			var list = db.Users.OrderBy(x => x.ID).ToList();
+			var list = db.Users.Where(x=>x.IsDelete == false).OrderBy(x => x.ID).ToList();
 			return list;
 		}
 
@@ -29,6 +29,7 @@ namespace Education.DAO
 				var old = db.Users.Where(x => x.ID == item.ID).FirstOrDefault();
 				if (item.ID == 0)
 				{
+					item.IsDelete = false;
 					db.Users.Add(item);
 					db.SaveChanges();
 				}
@@ -50,6 +51,17 @@ namespace Education.DAO
 				throw;
 			}
 			
+		}
+
+		public Object Delete(int id)
+		{
+			var lst = db.Users.SingleOrDefault(x => x.IsDelete == false && x.ID == id);
+			if(lst != null)
+			{
+				lst.IsDelete = true;
+				db.SaveChanges();
+			}
+			return lst;
 		}
 
 

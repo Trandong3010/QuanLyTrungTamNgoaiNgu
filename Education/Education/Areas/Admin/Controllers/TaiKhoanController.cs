@@ -41,6 +41,12 @@ namespace Education.Areas.Admin.Controllers
 
 		}
 
+		public JsonResult Delete(int id)
+		{
+			var lst = dao.Delete(id);
+			return Json(lst, JsonRequestBehavior.AllowGet);
+		}
+
 
 	}
 }

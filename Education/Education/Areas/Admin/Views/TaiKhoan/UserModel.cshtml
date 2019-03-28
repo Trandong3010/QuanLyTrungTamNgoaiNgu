@@ -11,9 +11,17 @@
 				<div class="modal-body">
 					<form id="Add_Edit_Users">
 						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label"></label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control hidden" name="ID" id="txtID">
+							</div>
+						</div>
+						<br />
+						<br />
+						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">Tên đăng nhập</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control hidden" id="txtID">
+								<input type="text" class="form-control hidden" name="ID" id="txtID">
 								<input type="text" class="form-control" name="Username" id="txtUsername" placeholder="Nhập tên đăng nhập">
 							</div>
 						</div>
@@ -38,7 +46,7 @@
 						<div class="clearfix"></div>
 						<div class="form-group">
 							<button type="button" class="btn pull-left btn-flat btn-danger" data-dismiss="modal">Đóng</button>
-							<button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Thêm</button>
+							<button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Lưu</button>
 						</div>						
 						<br />
 						<br />
@@ -55,14 +63,25 @@
 	<script>
 		function Add_Edit() {
 			debugger
+			//var ID = $("#txtID").val();
+			//var Username = $("#txtUsername").val();
+			//var Password = $("#txtPassword").val();
+			//var Email = $("#txtEmail").val();
+			var HTML = ``;
 			var data = $("#Add_Edit_Users").serialize();
 			$.ajax({
 				url: "/TaiKhoan/Save",
 				type: "post",
 				data: data,
 				success: function (result) {
-					window.location.href = "/Admin/TaiKhoan/Index";
+					//window.location.href = "/Admin/TaiKhoan/Index";
 					$("#Modal1").modal("hide");
+					HTML += `
+						<div class ="alert alert-warning">
+							<strong>Thành công!</strong> Lưu thành công.
+						</div>
+					`;
+					location.reload();
 				}
 			});
 		};
@@ -79,13 +98,13 @@
 			else {
 				$.ajax({
 					url: "/TaiKhoan/GetUsersById?id=" + t,
-					type: "GET",
+					type: "post",
 					dataType: "json",
 					success: function (item) {
 						$("#txtUsername").val(item.Username);
 						$("#txtPassword").val(item.Password);
 						$("#txtEmail").val(item.Email);
-						$("#txtID").val(item.ID);
+						$("#txtID").val(t);
 					}
 				});
 			}

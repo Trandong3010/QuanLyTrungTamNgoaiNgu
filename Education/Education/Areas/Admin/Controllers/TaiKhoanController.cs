@@ -29,8 +29,9 @@ namespace Education.Areas.Admin.Controllers
 		public JsonResult GetUsersById(int id)
 		{
 			var users = dao.GetUserById(id);
-			return Json(new { data = users }, JsonRequestBehavior.AllowGet);
+			return Json(users, JsonRequestBehavior.AllowGet);
 		}
+
 
 		public ActionResult Save(User item)
 		{

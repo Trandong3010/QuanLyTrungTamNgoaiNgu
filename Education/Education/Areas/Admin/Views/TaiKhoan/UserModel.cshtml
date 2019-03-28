@@ -54,6 +54,7 @@
 <!-- /.modal -->
 	<script>
 		function Add_Edit() {
+			debugger
 			var data = $("#Add_Edit_Users").serialize();
 			$.ajax({
 				url: "/TaiKhoan/Save",
@@ -66,4 +67,31 @@
 			});
 		};
 
+		function Show_Create_Edit(type,t) {
+			debugger
+			$("#Modal1").modal("show");
+			if (type == 'Add')
+			{
+				$("#txtUsername").val("");
+				$("#txtPassword").val("");
+				$("#txtEmail").val("");
+			}
+			else {
+				$.ajax({
+					url: "/TaiKhoan/GetUsersById?id=" + t,
+					type: "GET",
+					dataType: "json",
+					success: function (item) {
+						$("#txtUsername").val(item.Username);
+						$("#txtPassword").val(item.Password);
+						$("#txtEmail").val(item.Email);
+						$("#txtID").val(item.ID);
+					}
+				});
+			}
+				
+		};
+
 	</script>
+
+	

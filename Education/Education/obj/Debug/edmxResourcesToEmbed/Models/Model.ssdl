@@ -1,5 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QuanLyTrungTamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeCategory" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDTeacher" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeClass" Type="nchar" MaxLength="10" />
+    <Property Name="IDCourse" Type="nchar" MaxLength="10" />
+    <Property Name="Level" Type="nchar" MaxLength="10" />
+    <Property Name="QuantityOfStudents" Type="int" />
+    <Property Name="TotalLessons" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDRole" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Shift">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="IDRoom" Type="int" />
+    <Property Name="Period" Type="int" />
+    <Property Name="TimeBegin" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeShift" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="BirthDay" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeStudent" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeSubject" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDay" Type="datetime" />
+    <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDUser" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company" Type="nvarchar(max)" />
+    <Property Name="Domicile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Language" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeTeacher" Type="nchar" MaxLength="10" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="ID" />
@@ -12,6 +135,71 @@
     <Property Name="IsDelete" Type="bit" />
   </EntityType>
   <EntityContainer Name="QuanLyTrungTamModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class" EntityType="Self.Class" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Class].[ID] AS [ID], 
+    [Class].[Name] AS [Name], 
+    [Class].[Description] AS [Description], 
+    [Class].[Status] AS [Status], 
+    [Class].[IDTeacher] AS [IDTeacher], 
+    [Class].[IsDelete] AS [IsDelete], 
+    [Class].[CreateBy] AS [CreateBy], 
+    [Class].[CreateTime] AS [CreateTime], 
+    [Class].[CodeClass] AS [CodeClass], 
+    [Class].[IDCourse] AS [IDCourse], 
+    [Class].[Level] AS [Level], 
+    [Class].[QuantityOfStudents] AS [QuantityOfStudents], 
+    [Class].[TotalLessons] AS [TotalLessons]
+    FROM [dbo].[Class] AS [Class]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Student" EntityType="Self.Student" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Student].[ID] AS [ID], 
+    [Student].[Name] AS [Name], 
+    [Student].[Description] AS [Description], 
+    [Student].[Gender] AS [Gender], 
+    [Student].[BirthDay] AS [BirthDay], 
+    [Student].[Address] AS [Address], 
+    [Student].[Phone] AS [Phone], 
+    [Student].[Status] AS [Status], 
+    [Student].[Email] AS [Email], 
+    [Student].[Img] AS [Img], 
+    [Student].[IsDelete] AS [IsDelete], 
+    [Student].[CreateBy] AS [CreateBy], 
+    [Student].[CreateTime] AS [CreateTime], 
+    [Student].[CodeStudent] AS [CodeStudent]
+    FROM [dbo].[Student] AS [Student]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Teacher].[ID] AS [ID], 
+    [Teacher].[Name] AS [Name], 
+    [Teacher].[Description] AS [Description], 
+    [Teacher].[Status] AS [Status], 
+    [Teacher].[Address] AS [Address], 
+    [Teacher].[Phone] AS [Phone], 
+    [Teacher].[BirthDay] AS [BirthDay], 
+    [Teacher].[BirthPlace] AS [BirthPlace], 
+    [Teacher].[Literacy] AS [Literacy], 
+    [Teacher].[Gender] AS [Gender], 
+    [Teacher].[IDCard] AS [IDCard], 
+    [Teacher].[IDUser] AS [IDUser], 
+    [Teacher].[Email] AS [Email], 
+    [Teacher].[Company] AS [Company], 
+    [Teacher].[Domicile] AS [Domicile], 
+    [Teacher].[Language] AS [Language], 
+    [Teacher].[Position] AS [Position], 
+    [Teacher].[Img] AS [Img], 
+    [Teacher].[IsDelete] AS [IsDelete], 
+    [Teacher].[CreateBy] AS [CreateBy], 
+    [Teacher].[CreateTime] AS [CreateTime], 
+    [Teacher].[CodeTeacher] AS [CodeTeacher]
+    FROM [dbo].[Teacher] AS [Teacher]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

@@ -16,6 +16,8 @@ namespace Education.DAO
 			return list;
 		}
 
+		
+
 		public Object GetUserById(int id)
 		{
 			var list = db.Users.Where(x => x.ID == id).SingleOrDefault();

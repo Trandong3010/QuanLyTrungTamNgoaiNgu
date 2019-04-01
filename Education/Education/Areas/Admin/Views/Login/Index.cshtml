@@ -1,0 +1,116 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Đăng nhập</title>
+	<link rel="stylesheet" href="~/Content/Back-end/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/Content/Back-end/vendor/metisMenu/metisMenu.css">
+	<link rel="stylesheet" href="~/Content/Back-end/dist/css/admin.css">
+	<link rel="stylesheet" href="~/Content/Back-end/vendor/morris/morris.css">
+	<link rel="stylesheet" href="~/Content/Back-end/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Content/Back-end/dist/css/style.css">
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<div class="row form-container">
+				<div class="col-md-9">
+					<div class="login-panel">
+						<div class="panel-body">
+							<div class="form-group">
+								<h2 class="panel-title"> TRUNG TÂM NGOẠI NGỮ </h2>
+							</div>
+							<form id="loginform" method="post" onsubmit="Login()">
+								<div id="msgerorr"><ul style="color:red;">Đăng nhập thất bại! Yêu cầu bạn nhập tên đăng nhập và mật khẩu!</ul></div>
+								<div id="msg"><ul style="color:red;">Tên đăng nhập hoặc mật khẩu không hợp lệ!</ul></div>
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input class="form-control" placeholder="Tên đăng nhập" id="Username" name="Username" type="text" onchange="CheckUserName()" autofocus>
+										<span id="msgUsername" style="color:red;">Tên đăng nhập chưa tồn tại!</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+										<input class="form-control" placeholder="Mật khẩu" id="Password" name="password" type="Password" value="">
+									</div>
+								</div>
+								@*<div class="checkbox">
+										<label for="">
+											<input type="checkbox" name="remember" value="remember Me">Ghi nhớ
+										</label>
+									</div>*@
+								<div class="form-group">
+									<a href=""><p class="text-right">Quên mật khẩu</p></a>
+								</div>
+								<button type="submit" href="index.html" class="btn btn-success btn-block"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="~/Content/Back-end/vendor/jquery/jquery.min.js"></script>
+	<script src="~/Content/Back-end/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="~/Content/Back-end/vendor/metisMenu/metisMenu.js"></script>
+	<script src="~/Content/Back-end/vendor/morris/morris.js"></script>
+	<script src="~/Content/Back-end/dist/js/admin.js"></script>
+</body>
+</html>
+<script>
+	$("#msgUsername").hide();
+	$("#msgerorr").hide();
+	$("#msg").hide();
+
+	function CheckUserName() {
+		var Username = $("#Username").val();
+		var password = $("#Password").val();
+		$.ajax({
+			url: "/Login/CheckUsername?Username=" + Username,
+			success: function (result) {
+				if (result == false) {
+					$("#msgUsername").show();
+				}
+				else {
+					$("#msgUsername").hide();
+				}
+			}
+		});
+	}
+
+	function Login() {
+		if (Username == "" && password == "") {
+			$("#msgerorr").show();
+			location.reload();
+		}
+		else {
+			var data = $("#loginform").serialize();
+			$.ajax({
+				method: "post",
+				url: "/Login/CheckValidaUser",
+				data: data,
+				success: function (result) {
+					if (result == "Fail") {
+						$("#loginform")[0].reset();
+						$("#msg").show();
+					}
+					else {
+						window.location.href = "/Admin/TrangChu/Index";
+						$("#msg").hide();
+					}
+				}
+			});
+		}
+
+	}
+</script>

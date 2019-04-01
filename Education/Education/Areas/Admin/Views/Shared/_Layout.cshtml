@@ -1,9 +1,9 @@
-﻿@*@{
-	if (Session["ID_TaiKhoan"] == null)
+﻿@{
+	if (Session["Username"] == null)
 	{
-		Response.Redirect("~/admin/");
+		Response.Redirect("~/Admin/");
 	}
-}*@
+}
 
 <!DOCTYPE html>
 <html>

@@ -44,8 +44,17 @@
 							</li>
 						</ul>
 					</li>
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý nhân viên</a>
+							</li>
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
 				}
-				if (Session["RoleName"].ToString() == "TE")
+				if (Session["RoleName"].ToString() == "TE"|| Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
 				{
 
 
@@ -61,28 +70,29 @@
 						</ul>
 					</li>
 				}
-
-				<li>
-					<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Trung tâm<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li>
-							<a href="#">Quản lý lớp học</a>
-						</li>
-						<li>
-							<a href="#">Quản lý khóa học</a>
-						</li>
-						<li>
-							<a href="#">Quản lý ca học</a>
-						</li>
-						<li>
-							<a href="#">Quản lý chương trình học</a>
-						</li>
-						<li>
-							<a href="#">Quản lý môn học</a>
-						</li>
-					</ul>
-					<!-- /.nav-second-level -->
-				</li>
+				if (Session["RoleName"].ToString() == "EM"|| Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+				{
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Trung tâm<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý lớp học</a>
+							</li>
+							<li>
+								<a href="#">Quản lý khóa học</a>
+							</li>
+							<li>
+								<a href="#">Quản lý ca học</a>
+							</li>
+							<li>
+								<a href="#">Quản lý chương trình học</a>
+							</li>
+							<li>
+								<a href="#">Quản lý môn học</a>
+							</li>
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
 					<li>
 						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Danh bạ<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
@@ -92,15 +102,7 @@
 						</ul>
 						<!-- /.nav-second-level -->
 					</li>
-					<li>
-						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li>
-								<a href="#">Quản lý nhân viên</a>
-							</li>
-						</ul>
-						<!-- /.nav-second-level -->
-					</li>
+				}
 
 			}
 		</ul>

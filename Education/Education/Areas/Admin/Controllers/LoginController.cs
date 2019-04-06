@@ -1,4 +1,5 @@
-﻿using Education.Models;
+﻿using Education.DAO;
+using Education.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Education.Areas.Admin.Controllers
     public class LoginController : Controller
     {
 		QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
+		UsersDAO userdao = new UsersDAO();
 		// GET: Admin/Login
 		public ActionResult Index()
         {
@@ -30,9 +32,13 @@ namespace Education.Areas.Admin.Controllers
 		{
 			string result = "Fail";
 			var DataItem = db.Users.Where(x => x.Username == model.Username && x.Password == model.Password).SingleOrDefault();
+			var RoleName = userdao.GetByIDRole(int.Parse(DataItem.IDRole));
 			if (DataItem.Username != null && DataItem.Password != null)
 			{
-				Session["Role"] = DataItem.Role.ToString();
+				//Session["RoleName"] = DataItem.IDRole.ToString();
+				
+				Session["RoleName"] = RoleName;
+
 				Session["Username"] = DataItem.Username.ToString();
 				result = "Success";
 			}

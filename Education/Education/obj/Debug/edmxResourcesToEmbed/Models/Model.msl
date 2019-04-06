@@ -15,13 +15,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role">
-        <MappingFragment StoreEntitySet="Role">
+    <EntitySetMapping Name="Role_Detail">
+      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role_Detail">
+        <MappingFragment StoreEntitySet="Role_Detail">
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -46,6 +46,7 @@
     <EntitySetMapping Name="Subjects">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.Subject">
         <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
           <ScalarProperty Name="CodeSubject" ColumnName="CodeSubject" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
@@ -61,11 +62,21 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="QuanLyTrungTamModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

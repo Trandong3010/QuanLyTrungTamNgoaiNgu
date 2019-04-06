@@ -38,15 +38,15 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
           <Property Name="QuantityOfStudents" Type="int" />
           <Property Name="TotalLessons" Type="int" />
         </EntityType>
-        <EntityType Name="Role">
+        <EntityType Name="Role_Detail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDRole" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="IDRole" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -74,7 +74,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Gender" Type="bit" />
-          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="BirthDay" Type="datetime2" Precision="7" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
@@ -98,6 +98,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CodeSubject" Type="nchar" MaxLength="10" />
+          <Property Name="IDCategory" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -136,15 +137,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="Username" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Role" Type="int" />
           <Property Name="IsDelete" Type="bit" />
+          <Property Name="IDRole" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityContainer Name="QuanLyTrungTamModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Class].[ID] AS [ID], 
@@ -213,10 +224,11 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
       <Schema Namespace="QuanLyTrungTamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuanLyTrungTamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
-          <EntitySet Name="Roles" EntityType="QuanLyTrungTamModel.Role" />
+          <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
           <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
           <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
           <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
+          <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
           <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
           <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
           <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
@@ -234,15 +246,15 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityType Name="Role">
+        <EntityType Name="Role_Detail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
+          <Property Name="IDRole" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -273,6 +285,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeSubject" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IDCategory" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -282,8 +295,17 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="Int32" />
           <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="IDRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="Class">
           <Key>
@@ -311,7 +333,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="Boolean" />
-          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="BirthDay" Type="DateTime" Precision="7" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -349,7 +371,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeTeacher" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -369,13 +391,13 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role">
-              <MappingFragment StoreEntitySet="Role">
+          <EntitySetMapping Name="Role_Detail">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role_Detail">
+              <MappingFragment StoreEntitySet="Role_Detail">
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -400,6 +422,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="QuanLyTrungTamModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
                 <ScalarProperty Name="CodeSubject" ColumnName="CodeSubject" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
@@ -415,11 +438,21 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuanLyTrungTamModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -12,12 +12,12 @@ namespace Education.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Role_Detail
     {
         public int ID { get; set; }
-        public string IDRole { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<int> IDRole { get; set; }
+        public string Status { get; set; }
     }
 }

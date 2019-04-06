@@ -1,4 +1,9 @@
-﻿<div class="navbar-default sidebar" role="navigation">
+﻿@using Education.Models;
+@{
+	UserRole fb = new UserRole();
+
+}
+<div class="navbar-default sidebar" role="navigation">
 	<div class="sidebar-nav navbar-collapse">
 		<ul class="nav" id="side-menu">
 			<li class="sidebar-search">
@@ -12,79 +17,92 @@
 				</div>
 				<!-- /input-group -->
 			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Chức năng chung<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
+			@{ if (Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+				{
 					<li>
-						<a href="/Admin/TaiKhoan/">Quản lý người dùng</a>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Chức năng chung<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="/Admin/TaiKhoan/">Quản lý người dùng</a>
+							</li>
+							<li>
+								<a href="#">Cấu hình nhóm quyền</a>
+							</li>
+							<li>
+								<a href="#">Phân quyền</a>
+							</li>
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
+
+
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Giáo viên <span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý giáo viên</a>
+							</li>
+						</ul>
+					</li>
+				}
+				if (Session["RoleName"].ToString() == "TE")
+				{
+
+
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Học viên <span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý học viên</a>
+							</li>
+							<li>
+								<a href="#">Quản lý điểm</a>
+							</li>
+						</ul>
+					</li>
+				}
+
+				<li>
+					<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Trung tâm<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="#">Quản lý lớp học</a>
+						</li>
+						<li>
+							<a href="#">Quản lý khóa học</a>
+						</li>
+						<li>
+							<a href="#">Quản lý ca học</a>
+						</li>
+						<li>
+							<a href="#">Quản lý chương trình học</a>
+						</li>
+						<li>
+							<a href="#">Quản lý môn học</a>
+						</li>
+					</ul>
+					<!-- /.nav-second-level -->
+				</li>
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Danh bạ<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý danh bạ</a>
+							</li>
+						</ul>
+						<!-- /.nav-second-level -->
 					</li>
 					<li>
-						<a href="#">Cấu hình nhóm quyền</a>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="#">Quản lý nhân viên</a>
+							</li>
+						</ul>
+						<!-- /.nav-second-level -->
 					</li>
-					<li>
-						<a href="#">Phân quyền</a>
-					</li>
-				</ul>
-				<!-- /.nav-second-level -->
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Giáo viên <span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">Quản lý giáo viên</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Học viên <span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">Quản lý học viên</a>
-					</li>
-					<li>
-						<a href="#">Quản lý điểm</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Trung tâm<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">Quản lý lớp học</a>
-					</li>
-					<li>
-						<a href="#">Quản lý khóa học</a>
-					</li>
-					<li>
-						<a href="#">Quản lý ca học</a>
-					</li>
-					<li>
-						<a href="#">Quản lý chương trình học</a>
-					</li>
-					<li>
-						<a href="#">Quản lý môn học</a>
-					</li>
-				</ul>
-				<!-- /.nav-second-level -->
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Danh bạ<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">Quản lý danh bạ</a>
-					</li>
-				</ul>
-				<!-- /.nav-second-level -->
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">Quản lý nhân viên</a>
-					</li>
-				</ul>
-				<!-- /.nav-second-level -->
-			</li>
+
+			}
 		</ul>
 	</div>
 	<!-- /.sidebar-collapse -->

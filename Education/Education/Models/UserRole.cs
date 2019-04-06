@@ -12,17 +12,11 @@ namespace Education.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class UserRole
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; }
-        public string Type { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
-        public string CreateBy { get; set; }
-        public Nullable<System.DateTime> CreateTime { get; set; }
-        public string CodeSubject { get; set; }
-        public Nullable<int> IDCategory { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }

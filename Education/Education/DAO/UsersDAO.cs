@@ -15,8 +15,18 @@ namespace Education.DAO
 			var list = db.Users.Where(x=>x.IsDelete == false).OrderBy(x => x.ID).ToList();
 			return list;
 		}
-
-		
+		/// <summary>
+		/// Hàm lấy id vài trò truyền vô chi tiết vai trò để lấy mã của vai trò đó
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public Object GetByIDRole(int id)
+		{
+			var lst = (from a in db.Role_Detail
+					  where a.IDRole == id
+					  select a.Name).FirstOrDefault<Object>();
+			return lst;
+		}
 
 		public Object GetUserById(int id)
 		{

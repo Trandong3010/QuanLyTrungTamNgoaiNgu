@@ -1,0 +1,141 @@
+﻿<div class="modal fade" id="ShiftModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Ca học</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="Add_Edit_Shifts">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Tên ca học
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên ">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Status" id="txtStatus" placeholder="Nhập trạng thái">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Phòng</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="IDRoom" id="txtIDRoom" placeholder="Nhập phòng" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Khoảng thời gian</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Period" id="txtPeriod" placeholder="Nhập thời gian ">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" name="TimeBegin" id="txtTimeBegin" placeholder="Nhập thời gian ">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <button type="button" class="btn pull-left btn-flat btn-danger" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Lưu</button>
+                    </div>
+                    <br />
+                    <br />
+                </form>
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    function Add_Edit() {
+        debugger
+        var HTML = ``;
+        var data = $("#Add_Edit_Shifts").serialize();
+        $.ajax({
+            url: "/Shift/Save",
+            type: "post",
+            data: data,
+            success: function (result) {
+                $("#ShiftModal").modal("hide");
+                HTML += `
+                    <div class ="alert alert-warning">
+                        <strong>Thành công!<strong> Lưu thành công.
+                    </div>
+                `;
+                location.reload();
+            }
+        });
+    };
+
+    function Show_Create_Edit(type,t) {
+        debugger
+        $("#ShiftModal").modal("show");
+        if (type == 'Add')
+        {
+            $("#txtName").val("");
+            $("#txtDescription").val("");
+            $("#txtStatus").val("");
+            $("#txtIDRoom").val("");
+            $("#txtPeriod").val("");
+            $("#txtTimeBegin").val("");
+        }
+        else {
+            $.ajax({
+                url: "/Shift/GetShiftById?id=" + t,
+                type: "post",
+                dataType: "json",
+                success: function (item) {
+                    $("#txtName").val(item.Name);
+                    $("#txtDescription").val(item.Description);
+                    $("#txtStatus").val(item.Status);
+                    $("#txtIDRoom").val(item.IDRoom);
+                    $("#txtPeriod").val(item.Period);
+                    $("#txtTimeBegin").val(item.TimeBegin);
+                    $("#txtID").val(t);
+                }
+            });
+        }
+
+    };
+
+</script>

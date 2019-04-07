@@ -1,4 +1,4 @@
-﻿using Education.DAO;
+using Education.DAO;
 using Education.Models;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,10 @@ namespace Education.Areas.Admin.Controllers
 {
     public class ShiftController : Controller
     {
+        //
+        // GET: /Admin/Shift/
         ShiftDAO dao = new ShiftDAO();
         QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
-        // GET: Admin/TaiKhoan
         public ActionResult Index()
         {
             var shifts = dao.GetList();
@@ -20,20 +21,26 @@ namespace Education.Areas.Admin.Controllers
             return View();
         }
 
-        public JsonResult GetShift()
+        public JsonResult GetShifts()
         {
             var shifts = dao.GetList();
             return Json(new { data = shifts }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetShiftsById(int id)
+        public JsonResult GetShiftById(int id)
         {
             var shifts = dao.GetShiftById(id);
             return Json(shifts, JsonRequestBehavior.AllowGet);
         }
+
+
         public ActionResult Save(Shift item)
         {
             bool status = false;
+            if (item.ID == 0)
+            {
+                item.CreateTime = DateTime.Now;
+            }
             dao.Save(item);
             return new JsonResult { Data = new { status = status } };
 

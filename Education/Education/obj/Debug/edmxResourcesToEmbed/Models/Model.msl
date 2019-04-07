@@ -59,6 +59,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="CodeTeacher" ColumnName="CodeTeacher" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Domicile" ColumnName="Domicile" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Literacy" ColumnName="Literacy" />
+          <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+          <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.User">
         <MappingFragment StoreEntitySet="User">
@@ -114,34 +142,6 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Teachers">
-      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Teacher">
-        <MappingFragment StoreEntitySet="Teacher">
-          <ScalarProperty Name="CodeTeacher" ColumnName="CodeTeacher" />
-          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="Img" ColumnName="Img" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="Language" ColumnName="Language" />
-          <ScalarProperty Name="Domicile" ColumnName="Domicile" />
-          <ScalarProperty Name="Company" ColumnName="Company" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
-          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Literacy" ColumnName="Literacy" />
-          <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
-          <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />

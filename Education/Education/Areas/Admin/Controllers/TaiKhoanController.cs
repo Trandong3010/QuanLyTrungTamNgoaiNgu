@@ -40,7 +40,7 @@ namespace Education.Areas.Admin.Controllers
 			return new JsonResult{ Data = new {status = status } };
 
 		}
-
+        
 		public JsonResult Delete(int id)
 		{
 			var lst = dao.Delete(id);

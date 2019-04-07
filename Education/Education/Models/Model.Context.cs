@@ -29,10 +29,10 @@ namespace Education.Models
         public virtual DbSet<Role_Detail> Role_Detail { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<Teacher> Teachers { get; set; }
     }
 }

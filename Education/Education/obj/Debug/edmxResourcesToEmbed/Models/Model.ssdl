@@ -54,7 +54,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
     <Property Name="IsDelete" Type="bit" />
     <Property Name="IDRoom" Type="int" />
     <Property Name="Period" Type="int" />
-    <Property Name="TimeBegin" Type="datetime" />
+    <Property Name="TimeBegin" Type="date" />
     <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
     <Property Name="CreateTime" Type="datetime" />
     <Property Name="CodeShift" Type="nchar" MaxLength="10" />
@@ -95,13 +95,11 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     <Property Name="CodeSubject" Type="nchar" MaxLength="10" />
     <Property Name="IDCategory" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Teacher">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
@@ -110,7 +108,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
     <Property Name="BirthDay" Type="datetime" />
     <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
     <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
-    <Property Name="Gender" Type="bit" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
     <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
     <Property Name="IDUser" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -149,6 +147,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
     <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Class" EntityType="Self.Class" store:Type="Tables" store:Schema="dbo">
@@ -185,32 +184,6 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
     [Student].[CreateTime] AS [CreateTime], 
     [Student].[CodeStudent] AS [CodeStudent]
     FROM [dbo].[Student] AS [Student]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Teacher" EntityType="Self.Teacher" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Teacher].[ID] AS [ID], 
-    [Teacher].[Name] AS [Name], 
-    [Teacher].[Description] AS [Description], 
-    [Teacher].[Status] AS [Status], 
-    [Teacher].[Address] AS [Address], 
-    [Teacher].[Phone] AS [Phone], 
-    [Teacher].[BirthDay] AS [BirthDay], 
-    [Teacher].[BirthPlace] AS [BirthPlace], 
-    [Teacher].[Literacy] AS [Literacy], 
-    [Teacher].[Gender] AS [Gender], 
-    [Teacher].[IDCard] AS [IDCard], 
-    [Teacher].[IDUser] AS [IDUser], 
-    [Teacher].[Email] AS [Email], 
-    [Teacher].[Company] AS [Company], 
-    [Teacher].[Domicile] AS [Domicile], 
-    [Teacher].[Language] AS [Language], 
-    [Teacher].[Position] AS [Position], 
-    [Teacher].[Img] AS [Img], 
-    [Teacher].[IsDelete] AS [IsDelete], 
-    [Teacher].[CreateBy] AS [CreateBy], 
-    [Teacher].[CreateTime] AS [CreateTime], 
-    [Teacher].[CodeTeacher] AS [CodeTeacher]
-    FROM [dbo].[Teacher] AS [Teacher]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

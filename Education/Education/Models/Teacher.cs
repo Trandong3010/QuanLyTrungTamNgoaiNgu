@@ -23,7 +23,7 @@ namespace Education.Models
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string BirthPlace { get; set; }
         public string Literacy { get; set; }
-        public Nullable<bool> Gender { get; set; }
+        public string Gender { get; set; }
         public string IDCard { get; set; }
         public Nullable<int> IDUser { get; set; }
         public string Email { get; set; }

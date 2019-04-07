@@ -59,7 +59,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
           <Property Name="IsDelete" Type="bit" />
           <Property Name="IDRoom" Type="int" />
           <Property Name="Period" Type="int" />
-          <Property Name="TimeBegin" Type="datetime" />
+          <Property Name="TimeBegin" Type="date" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CodeShift" Type="nchar" MaxLength="10" />
@@ -100,13 +100,11 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="CodeSubject" Type="nchar" MaxLength="10" />
           <Property Name="IDCategory" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
@@ -115,7 +113,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
           <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="bit" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
           <Property Name="IDUser" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -154,6 +152,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" store:Type="Tables" store:Schema="dbo">
@@ -191,32 +190,6 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
     [Student].[CodeStudent] AS [CodeStudent]
     FROM [dbo].[Student] AS [Student]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Teacher" EntityType="Self.Teacher" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Teacher].[ID] AS [ID], 
-    [Teacher].[Name] AS [Name], 
-    [Teacher].[Description] AS [Description], 
-    [Teacher].[Status] AS [Status], 
-    [Teacher].[Address] AS [Address], 
-    [Teacher].[Phone] AS [Phone], 
-    [Teacher].[BirthDay] AS [BirthDay], 
-    [Teacher].[BirthPlace] AS [BirthPlace], 
-    [Teacher].[Literacy] AS [Literacy], 
-    [Teacher].[Gender] AS [Gender], 
-    [Teacher].[IDCard] AS [IDCard], 
-    [Teacher].[IDUser] AS [IDUser], 
-    [Teacher].[Email] AS [Email], 
-    [Teacher].[Company] AS [Company], 
-    [Teacher].[Domicile] AS [Domicile], 
-    [Teacher].[Language] AS [Language], 
-    [Teacher].[Position] AS [Position], 
-    [Teacher].[Img] AS [Img], 
-    [Teacher].[IsDelete] AS [IsDelete], 
-    [Teacher].[CreateBy] AS [CreateBy], 
-    [Teacher].[CreateTime] AS [CreateTime], 
-    [Teacher].[CodeTeacher] AS [CodeTeacher]
-    FROM [dbo].[Teacher] AS [Teacher]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -227,11 +200,11 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
           <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
           <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
+          <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
           <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
           <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
           <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
           <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
-          <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -267,7 +240,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="IDRoom" Type="Int32" />
           <Property Name="Period" Type="Int32" />
-          <Property Name="TimeBegin" Type="DateTime" Precision="3" />
+          <Property Name="TimeBegin" Type="DateTime" Precision="0" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -286,6 +259,33 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeSubject" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IDCategory" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Literacy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDUser" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CodeTeacher" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -343,33 +343,6 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeStudent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Teacher">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDay" Type="DateTime" Precision="3" />
-          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Literacy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="Boolean" />
-          <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IDUser" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Precision="3" />
-          <Property Name="CodeTeacher" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -435,6 +408,34 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="CodeTeacher" ColumnName="CodeTeacher" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Domicile" ColumnName="Domicile" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Literacy" ColumnName="Literacy" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuanLyTrungTamModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -490,34 +491,6 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Teacher' does not have a primar
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Teacher">
-              <MappingFragment StoreEntitySet="Teacher">
-                <ScalarProperty Name="CodeTeacher" ColumnName="CodeTeacher" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="Domicile" ColumnName="Domicile" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
-                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Literacy" ColumnName="Literacy" />
-                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

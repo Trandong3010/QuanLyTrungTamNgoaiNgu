@@ -1,10 +1,7 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 
 namespace Education.Areas.Admin
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class AdminAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -24,10 +21,15 @@ namespace Education.Areas.Admin
 			//	defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 			//);
 			context.MapRoute(
-				"TaiKhoan",
-				"Admin/TaiKhoan",
-				new { Controller = "TaiKhoan", action = "Index", id = UrlParameter.Optional }
+                 "TaiKhoan",
+                 "Admin/TaiKhoan",
+                  new { Controller = "TaiKhoan", action = "Index", id = UrlParameter.Optional }
 			);
+            context.MapRoute(
+                "Shift",
+                "Admin/Shift",
+               new { Controller = "Shift", action = "Index", id = UrlParameter.Optional }
+            );
 
 			context.MapRoute(
 			   "Admin_default",
@@ -41,16 +43,6 @@ namespace Education.Areas.Admin
 				new { Controller = "Trangchu/TrangChu", action = "Index", id = UrlParameter.Optional }
 			);
 
-            /// <summary>
-            /// Router Giáo viên
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
-            context.MapRoute(
-                "Teacher",
-                "Admin/Teacher",
-                new { Controller = "Teacher", action = "Index", id = UrlParameter.Optional }
-            );
         }
 
     }

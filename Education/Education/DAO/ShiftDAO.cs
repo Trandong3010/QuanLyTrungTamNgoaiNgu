@@ -1,4 +1,4 @@
-﻿using Education.Models;
+using Education.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +39,7 @@ namespace Education.DAO
                         old.Description = item.Description;
                         old.Status = item.Status;
                         old.IDRoom = item.IDRoom;
+                        old.Period = item.Period;
                         old.TimeBegin = item.TimeBegin;
                         db.SaveChanges();
                     }

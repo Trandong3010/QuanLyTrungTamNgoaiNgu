@@ -15,6 +15,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Permisions">
+      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision">
+        <MappingFragment StoreEntitySet="Permision">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permision_Detail">
+      <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision_Detail">
+        <MappingFragment StoreEntitySet="Permision_Detail">
+          <ScalarProperty Name="IDPermision" ColumnName="IDPermision" />
+          <ScalarProperty Name="Delete" ColumnName="Delete" />
+          <ScalarProperty Name="Edit" ColumnName="Edit" />
+          <ScalarProperty Name="Add" ColumnName="Add" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Role_Detail">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role_Detail">
         <MappingFragment StoreEntitySet="Role_Detail">

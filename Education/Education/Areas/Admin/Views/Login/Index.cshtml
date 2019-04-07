@@ -68,50 +68,53 @@
 </body>
 </html>
 <script>
-	$("#msgUsername").hide();
-	$("#msgerorr").hide();
-	$("#msg").hide();
+		$("#msgUsername").hide();
+		$("#msgerorr").hide();
+		$("#msg").hide();
 
-	function CheckUserName() {
-		var Username = $("#Username").val();
-		var password = $("#Password").val();
-		$.ajax({
-			url: "/Login/CheckUsername?Username=" + Username,
-			success: function (result) {
-				if (result == false) {
-					$("#msgUsername").show();
-				}
-				else {
-					$("#msgUsername").hide();
-				}
-			}
-		});
-	}
-
-	function Login() {
-		debugger
-		if (Username == "" && password == "") {
-			$("#msgerorr").show();
-			location.reload();
-		}
-		else {
-			var data = $("#loginform").serialize();
+		function CheckUserName() {
+			var Username = $("#Username").val().trim();
 			$.ajax({
-				method: "post",
-				url: "/Login/CheckValidaUser",
-				data: data,
+				type: "post",
+				url: "/Login/CheckUsername?Username=" + Username,
 				success: function (result) {
-					if (result == "Fail") {
-						$("#loginform")[0].reset();
-						$("#msg").show();
+					if (result == false) {
+						$("#msgUsername").show();
 					}
 					else {
-						window.location.href = "/Admin/TrangChu/Index";
-						$("#msg").hide();
+						$("#msgUsername").hide();
 					}
 				}
 			});
-		}
+		};
 
-	}
+		function Login() {
+			debugger
+			var Username = $("#Username").val().trim();
+			var Password = $("#Password").val().trim();
+			if (Username == "" && Password == "") {
+				$("#msgerorr").show();
+				location.reload();
+			}
+			else {
+				//var data = $("#loginform").serialize();
+				var data = 'Username=' + Username + '&Password=' + Password;
+				$.ajax({
+					type: "post",
+					url: "/Login/CheckValidaUser",
+					data: data,
+					success: function (result) {
+						if (result == "Fail") {
+							$("#loginform")[0].reset();
+							$("#msg").show();
+						}
+						else {
+							window.location.href = "/Admin/TrangChu/";
+							$("#msg").hide();
+						}
+					}
+				});
+			}
+
+		};
 </script>

@@ -33,6 +33,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
     <Property Name="QuantityOfStudents" Type="int" />
     <Property Name="TotalLessons" Type="int" />
   </EntityType>
+  <EntityType Name="Permision">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDUser" Type="int" />
+  </EntityType>
+  <EntityType Name="Permision_Detail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Add" Type="bit" Nullable="false" />
+    <Property Name="Edit" Type="bit" Nullable="false" />
+    <Property Name="Delete" Type="bit" Nullable="false" />
+    <Property Name="IDPermision" Type="int" />
+  </EntityType>
   <EntityType Name="Role_Detail">
     <Key>
       <PropertyRef Name="ID" />
@@ -144,6 +163,8 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
   </EntityType>
   <EntityContainer Name="QuanLyTrungTamModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permision" EntityType="Self.Permision" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permision_Detail" EntityType="Self.Permision_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />

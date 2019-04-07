@@ -1,8 +1,9 @@
-﻿
+﻿@using Education.Models;
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-	List<Education.Models.User> lst = ViewBag.users as List<Education.Models.User>;
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	//List<Education.Models.Permision> lst = ViewBag.Permision as List<Education.Models.Permision>;
+	var list = ViewBag.Permision as Permision_Detail;
 }
 
 <div class="row">
@@ -18,7 +19,13 @@
 				<h4>Danh sách nhân viên</h4>
 			</div>*@
 			<div class="panel-body">
-				<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
+				@{
+					if (list.Add == true)
+					{
+						<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
+					}
+				}
+				@*<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>*@
 				<table class="table table-striped table-bordered table-hover" id="dataTable-example">
 					<thead>
 						<tr>
@@ -37,7 +44,7 @@
 @RenderPage("Delete.cshtml")
 @section Myscripts{
 	<script>
-		$(document).ready(function Load_danhsach () {
+		$(document).ready(function Load_danhsach() {
 			$("#dataTable-example").DataTable({
 				ajax: {
 					url: "/TaiKhoan/GetUsers",
@@ -49,16 +56,25 @@
 					{ data: "Password", autowidth: true },
 					{ data: "Email", autowidth: true },
 					{
-						data: "ID", autowidth: true, render: function (data)
-						{
+						data: "ID", autowidth: true, render: function (data) {
 							return `
 								 <div class ="col-xs-9 ">
                                      <div class ="col-xs-4 ">
-                                         <a href="#" onclick="Show_Create_Edit('Edit',${data})">
+								@{
+									if (list.Add == true)
+									{
+										 <a href="#" onclick="Show_Create_Edit('Edit',${data})">
 											<div class ="btn btn-sm btn-warning">
 												<li class ="glyphicon glyphicon-edit"></li>
 											</div>
                                          </a>
+									}
+									 @*<a href="#" onclick="Show_Create_Edit('Edit',${data})">
+											<div class ="btn btn-sm btn-warning">
+												<li class ="glyphicon glyphicon-edit"></li>
+											</div>
+                                         </a>*@
+									}
                                      </div>
 
 
@@ -74,13 +90,13 @@
 						}
 					}
 				],
-					'paging': true,
-				    'lengthChange': false,
-				    'searching': true,
-				    'ordering': false,
-				    'info': false,
-				    'responsive': true,
-				    "scrollY": 500,
+				'paging': true,
+				'lengthChange': false,
+				'searching': true,
+				'ordering': false,
+				'info': false,
+				'responsive': true,
+				"scrollY": 500,
 			});
 		});
 
@@ -106,9 +122,9 @@
 		//	}
 
 		//};
-		
-		
-		
+
+
+
 	</script>
 }
 

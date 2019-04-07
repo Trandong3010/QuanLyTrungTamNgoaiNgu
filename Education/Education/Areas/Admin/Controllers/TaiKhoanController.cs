@@ -15,8 +15,10 @@ namespace Education.Areas.Admin.Controllers
 		// GET: Admin/TaiKhoan
 		public ActionResult Index()
         {
-			var users = dao.GetList();
-			ViewBag.users = users;
+			var Id = Session["IDUser"].ToString();
+			var IDPermision = dao.GetByIDPermision(int.Parse(Id)).ToString();
+			var Permision = dao.GetPermision(int.Parse(IDPermision));
+			ViewBag.Permision = Permision;
 			return View();
         }
 

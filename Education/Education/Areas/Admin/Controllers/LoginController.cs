@@ -12,12 +12,13 @@ namespace Education.Areas.Admin.Controllers
     {
 		QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
 		UsersDAO userdao = new UsersDAO();
+		
 		// GET: Admin/Login
 		public ActionResult Index()
         {
             return View();
         }
-
+		[HttpPost]
 		public JsonResult CheckUsername(string Username)
 		{
 			System.Threading.Thread.Sleep(200);
@@ -27,7 +28,7 @@ namespace Education.Areas.Admin.Controllers
 				result = true;
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
-
+		[HttpPost]
 		public ActionResult CheckValidaUser(User model)
 		{
 			string result = "Fail";
@@ -38,6 +39,7 @@ namespace Education.Areas.Admin.Controllers
 				//Session["RoleName"] = DataItem.IDRole.ToString();
 				
 				Session["RoleName"] = RoleName;
+				Session["IDUser"] = DataItem.ID.ToString();
 
 				Session["Username"] = DataItem.Username.ToString();
 				result = "Success";

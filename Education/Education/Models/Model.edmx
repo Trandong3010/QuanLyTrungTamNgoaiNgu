@@ -38,6 +38,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
           <Property Name="QuantityOfStudents" Type="int" />
           <Property Name="TotalLessons" Type="int" />
         </EntityType>
+        <EntityType Name="Permision">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Permision_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Add" Type="bit" Nullable="false" />
+          <Property Name="Edit" Type="bit" Nullable="false" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+          <Property Name="IDPermision" Type="int" />
+        </EntityType>
         <EntityType Name="Role_Detail">
           <Key>
             <PropertyRef Name="ID" />
@@ -149,6 +168,8 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
         </EntityType>
         <EntityContainer Name="QuanLyTrungTamModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permision" EntityType="Self.Permision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permision_Detail" EntityType="Self.Permision_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
@@ -197,6 +218,8 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
       <Schema Namespace="QuanLyTrungTamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuanLyTrungTamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
+          <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
+          <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
           <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
           <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
           <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
@@ -218,6 +241,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Permision">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Permision_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Add" Type="Boolean" Nullable="false" />
+          <Property Name="Edit" Type="Boolean" Nullable="false" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <Property Name="IDPermision" Type="Int32" />
         </EntityType>
         <EntityType Name="Role_Detail">
           <Key>
@@ -360,6 +402,27 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisions">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision">
+              <MappingFragment StoreEntitySet="Permision">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permision_Detail">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision_Detail">
+              <MappingFragment StoreEntitySet="Permision_Detail">
+                <ScalarProperty Name="IDPermision" ColumnName="IDPermision" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="Add" ColumnName="Add" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

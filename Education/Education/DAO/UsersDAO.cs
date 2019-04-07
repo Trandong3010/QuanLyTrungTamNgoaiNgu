@@ -28,6 +28,34 @@ namespace Education.DAO
 			return lst;
 		}
 
+		/// <summary>
+		/// Lấy id permision
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		/// 
+		public Object GetByIDPermision(int id)
+		{
+			var lst = (from a in db.Permisions
+					   where a.IDUser == id
+					   select a.ID.ToString()).FirstOrDefault<Object>();
+			return lst;
+		}
+
+		/// <summary>
+		/// Phân quyền theo chức năng sử dụng join
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		/// 
+		public Object GetPermision(int id)
+		{
+			var lst = (from a in db.Permision_Detail
+					   where a.IDPermision == id
+					   select a).FirstOrDefault<Object>();
+			return lst;
+		}
+
 		public Object GetUserById(int id)
 		{
 			var list = db.Users.Where(x => x.ID == id).SingleOrDefault();

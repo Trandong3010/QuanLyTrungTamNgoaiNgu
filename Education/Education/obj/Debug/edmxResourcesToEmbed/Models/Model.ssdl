@@ -41,6 +41,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="IDUser" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
   </EntityType>
   <EntityType Name="Permision_Detail">
     <Key>
@@ -51,6 +52,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
     <Property Name="Edit" Type="bit" Nullable="false" />
     <Property Name="Delete" Type="bit" Nullable="false" />
     <Property Name="IDPermision" Type="int" />
+    <Property Name="isDelete" Type="bit" />
   </EntityType>
   <EntityType Name="Role_Detail">
     <Key>
@@ -61,6 +63,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Class' does not have a primary 
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="IDRole" Type="int" />
     <Property Name="Status" Type="nchar" MaxLength="10" />
+    <Property Name="IsDelete" Type="bit" />
   </EntityType>
   <EntityType Name="Shift">
     <Key>
@@ -160,6 +163,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
   </EntityType>
   <EntityContainer Name="QuanLyTrungTamModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />

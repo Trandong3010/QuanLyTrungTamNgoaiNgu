@@ -19,5 +19,6 @@ namespace Education.Models
         public bool Edit { get; set; }
         public bool Delete { get; set; }
         public Nullable<int> IDPermision { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     }
 }

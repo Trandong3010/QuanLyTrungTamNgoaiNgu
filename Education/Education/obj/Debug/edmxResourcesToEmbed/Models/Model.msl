@@ -18,6 +18,7 @@
     <EntitySetMapping Name="Permisions">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision">
         <MappingFragment StoreEntitySet="Permision">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="IDUser" ColumnName="IDUser" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -28,6 +29,7 @@
     <EntitySetMapping Name="Permision_Detail">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.Permision_Detail">
         <MappingFragment StoreEntitySet="Permision_Detail">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="IDPermision" ColumnName="IDPermision" />
           <ScalarProperty Name="Delete" ColumnName="Delete" />
           <ScalarProperty Name="Edit" ColumnName="Edit" />
@@ -39,6 +41,7 @@
     <EntitySetMapping Name="Role_Detail">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.Role_Detail">
         <MappingFragment StoreEntitySet="Role_Detail">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="IDRole" ColumnName="IDRole" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -123,6 +126,7 @@
     <EntitySetMapping Name="UserRoles">
       <EntityTypeMapping TypeName="QuanLyTrungTamModel.UserRole">
         <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />

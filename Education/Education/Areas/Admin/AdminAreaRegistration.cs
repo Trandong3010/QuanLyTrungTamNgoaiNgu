@@ -25,7 +25,14 @@ namespace Education.Areas.Admin
                  "Admin/TaiKhoan",
                   new { Controller = "TaiKhoan", action = "Index", id = UrlParameter.Optional }
 			);
-            context.MapRoute(
+
+			context.MapRoute(
+				"UserRole",
+				"Admin/UserRole",
+			   new { Controller = "UserRole", action = "Index", id = UrlParameter.Optional }
+			);
+
+			context.MapRoute(
                 "Shift",
                 "Admin/Shift",
                new { Controller = "Shift", action = "Index", id = UrlParameter.Optional }

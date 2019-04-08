@@ -1,0 +1,126 @@
+﻿@using Education.Models;
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	var list = ViewBag.Permision as Permision_Detail;
+}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Quản lý phân quyền theo nhóm</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			@*<div class="panel-heading">
+					<h4>Danh sách nhân viên</h4>
+				</div>*@
+			<div class="panel-body">
+				@{
+					if (list.Add == true)
+					{
+						<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
+					}
+				}
+				@*<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>*@
+				<table class="table table-striped table-bordered table-hover" id="dataTable-example">
+					<thead>
+						<tr>
+							<th>Tên quyền</th>
+							<th>Mô tả</th>
+							<th></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+@*@RenderPage("UserModel.cshtml")
+@RenderPage("Delete.cshtml")*@
+@section Myscripts{
+	<script>
+		$(document).ready(function Load_danhsach() {
+			$("#dataTable-example").DataTable({
+				ajax: {
+					url: "/UserRole/GetList",
+					type: "Post",
+					datatype: "json"
+				},
+				columns: [
+					{ data: "Name", autowidth: true },
+					{ data: "Description", autowidth: true },
+					{
+						data: "ID", autowidth: true, render: function (data) {
+							return `
+								 <div class ="col-xs-9 ">
+                                     <div class ="col-xs-4 ">
+								@{
+									if (list.Add == true)
+									{
+										 <a href="#" onclick="Show_Create_Edit('Edit',${data})">
+											<div class ="btn btn-sm btn-warning">
+												<li class ="glyphicon glyphicon-edit"></li>
+											</div>
+                                         </a>
+									}
+									 @*<a href="#" onclick="Show_Create_Edit('Edit',${data})">
+											<div class ="btn btn-sm btn-warning">
+												<li class ="glyphicon glyphicon-edit"></li>
+											</div>
+                                         </a>*@
+									}
+                                     </div>
+
+
+                                     <div class ="col-xs-4 ">
+											<a href="#" onclick="ShowDelete(${data})">
+												<div class ="btn btn-sm btn-danger">
+													<li class ="glyphicon glyphicon-trash"></li>
+												</div>
+											</a>
+                                     </div>
+								</div>
+								`;
+						}
+					}
+				],
+				'paging': true,
+				'lengthChange': false,
+				'searching': true,
+				'ordering': false,
+				'info': false,
+				'responsive': true,
+				"scrollY": 500,
+			});
+		});
+
+		function ShowCreate(type, id) {
+			$("#Modal1").modal("show");
+		};
+
+		//function ShowEdit(t) {
+		//	$("#Modal1").modal("show");
+		//	if(t!= 0)
+		//	{
+		//		$.ajax({
+		//			url: "/TaiKhoan/GetUsersById?id=" + t,
+		//			type: "GET",
+		//			datatype: "JSON",
+		//			success: function (value) {
+		//				var obj = JSON.parse(value);
+		//				$("#txtUsername").val(obj.Name);
+		//				$("#txtPassword").val(obj.Name);
+		//				$("#txtEmail").val(obj.Name);
+		//			}
+		//		});
+		//	}
+
+		//};
+
+
+
+	</script>
+}

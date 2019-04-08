@@ -18,5 +18,6 @@ namespace Education.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<int> IDUser { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     }
 }

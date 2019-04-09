@@ -18,7 +18,6 @@
 	<link rel="stylesheet" href="~/Content/Back-end/dist/css/style.css">
 </head>
 <body>
-
 	<section>
 		<div class="container">
 			<div class="row form-container">
@@ -73,7 +72,7 @@
 		$("#msg").hide();
 
 		function CheckUserName() {
-			var Username = $("#Username").val().trim();
+			var Username = $("#Username").val();
 			$.ajax({
 				type: "post",
 				url: "/Login/CheckUsername?Username=" + Username,
@@ -90,15 +89,15 @@
 
 		function Login() {
 			debugger
-			var Username = $("#Username").val().trim();
-			var Password = $("#Password").val().trim();
+			var Username = $("#Username").val();
+			var Password = $("#Password").val();
 			if (Username == "" && Password == "") {
 				$("#msgerorr").show();
 				location.reload();
 			}
 			else {
-				//var data = $("#loginform").serialize();
-				var data = 'Username=' + Username + '&Password=' + Password;
+				var data = $("#loginform").serialize();
+				//var data = 'Username=' + Username + '&Password=' + Password;
 				$.ajax({
 					type: "post",
 					url: "/Login/CheckValidaUser",
@@ -109,7 +108,7 @@
 							$("#msg").show();
 						}
 						else {
-							window.location.href = "/Admin/TrangChu/";
+							window.location.href = "/Admin/TrangChu/Index";
 							$("#msg").hide();
 						}
 					}

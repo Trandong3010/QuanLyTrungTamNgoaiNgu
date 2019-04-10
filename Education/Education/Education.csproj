@@ -203,6 +203,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trangchu\TrangChuController.cs" />
@@ -210,6 +212,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
+    <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\ShiftDAO.cs" />
+    <Compile Include="DAO\StudentDAO.cs" />
     <Compile Include="DAO\TeacherDAO.cs" />
     <Compile Include="DAO\UserRoleDAO.cs" />
     <Compile Include="DAO\UsersDAO.cs" />
@@ -271,7 +276,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\Admin\Scripts\React\User.jsx" />
+    <Content Include="Scripts\React\lib\browser.min.js" />
+    <Content Include="Scripts\React\lib\react-dom.development.js" />
+    <Content Include="Scripts\React\lib\react.development.js" />
+    <None Include="Scripts\React\Student.jsx" />
+    <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\ShiftModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
+    <None Include="Scripts\React\User.jsx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -363,6 +376,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Scripts\" />
     <Folder Include="Content\Back-end\dist\" />
     <Folder Include="Content\Back-end\vendor\" />
     <Folder Include="Content\Front-end\" />

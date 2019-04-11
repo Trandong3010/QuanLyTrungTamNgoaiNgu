@@ -279,6 +279,7 @@
     <Content Include="Scripts\React\lib\browser.min.js" />
     <Content Include="Scripts\React\lib\react-dom.development.js" />
     <Content Include="Scripts\React\lib\react.development.js" />
+    <Content Include="Scripts\React\Login\Login.jsx" />
     <None Include="Scripts\React\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

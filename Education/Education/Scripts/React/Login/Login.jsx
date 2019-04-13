@@ -48,7 +48,7 @@ class App extends React.Component {
                         <div className="login-panel">
                             <div className="panel-body">
                                 <div className="form-group">
-                                    <h2 className="panel-title"> TRUNG TÂM NGOẠI NGỮ </h2>
+                                    <h2 className="panel-title"> TRUNG TÂM NGOẠI NGỮ1 </h2>
                                 </div>
                                 <form id="loginform" method="post" onsubmit="{this.onSubmit}">
                                     <div id="msgerorr"><ul style={{ color: 'red' }}>Đăng nhập thất bại! Yêu cầu bạn nhập tên đăng nhập và mật khẩu!</ul></div>

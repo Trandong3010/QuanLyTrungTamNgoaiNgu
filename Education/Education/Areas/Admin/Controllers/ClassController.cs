@@ -1,4 +1,4 @@
-using Education.DAO;
+﻿using Education.DAO;
 using Education.Models;
 using System;
 using System.Collections.Generic;
@@ -8,31 +8,31 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class ShiftController : Controller
+    public class ClassController : Controller
     {
         //
-        // GET: /Admin/Shift/
-        ShiftDAO dao = new ShiftDAO();
+        // GET: /Admin/Class/
+        ClassDAO dao = new ClassDAO();
         QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
         public ActionResult Index()
         {
-            var shifts = dao.GetList();
-            ViewBag.shifts = shifts;
+            var classes = dao.GetList();
+            ViewBag.classes = classes;
             return View();
         }
 
-        public JsonResult GetShifts()
+        public JsonResult GetClass()
         {
-            var shifts = dao.GetList();
-            return Json(new { data = shifts }, JsonRequestBehavior.AllowGet);
+            var classes = dao.GetList();
+            return Json(new { data = classes }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetShiftById(int id)
+        public JsonResult GetClassById(int id)
         {
-            var shifts = dao.GetShiftById(id);
-            return Json(shifts, JsonRequestBehavior.AllowGet);
+            var classes = dao.GetClassById(id);
+            return Json(classes, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Save(Shift item)
+        public ActionResult Save(Class item)
         {
             bool status = false;
             if (item.ID == 0)

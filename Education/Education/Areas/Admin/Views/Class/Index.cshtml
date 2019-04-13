@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<Education.Models.Class> lst = ViewBag.classes as List<Education.Models.Class>;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Quản lý lớp học</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)">
+                    <li class="glyphicon glyphicon-list-alt">
+                    </li> Thêm
+                </a>
+                <table class="table table-striped table-bordered table-hover" id="dataTable-class">
+                    <thead>
+                        <tr>
+                            <th>Mã lớp</th>
+                            <th>Tên lớp học</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th>Cấp độ</th>
+                            <th>Số lượng học viên</th>
+                            <th>Tổng số</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@RenderPage("ClassModel.cshtml")
+@RenderPage("Delete.cshtml")
+@section Myscripts{
+    <script>
+        $(document).ready(function Load_danhsach () {
+            $("#dataTable-class").DataTable({
+                ajax: {
+                    url: "/Class/GetClass",
+                    type: "Post",
+                    datatype: "json"
+                },
+                columns: [
+                    { data: "CodeClass", autowidth: true },
+					{ data: "Name", autowidth: true },
+					{ data: "Description", autowidth: true },
+					{ data: "Status", autowidth: true },
+                    { data: "Level", autowidth: true },
+                    { data: "QuantityOfStudents", autowidth: true },
+                    { data: "TotalLessons", autowidth: true ,},
+					{
+					    data: "ID", autowidth: true, render: function (data)
+					    {
+					        return `
+					        <div class ="col-xs-12 ">
+                                <div class ="col-xs-4 ">
+                                    <a href="#" onclick="Show_Create_Edit('Edit',${data})">
+                                       <div class ="btn btn-sm btn-warning">
+                                           <li class ="glyphicon glyphicon-edit"></li>
+                                       </div>
+                                    </a>
+                                </div>
+
+
+                                <div class ="col-xs-4 ">
+                                       <a href="#" onclick="ShowDelete(${data})">
+                                           <div class ="btn btn-sm btn-danger">
+                                               <li class ="glyphicon glyphicon-trash"></li>
+                                           </div>
+                                       </a>
+                                </div>
+                           </div>
+								`;
+					    }
+					}
+                ],
+                'paging': true,
+                'lengthChange': false,
+                'searching': true,
+                'ordering': false,
+                'info': false,
+                'responsive': true,
+                "scrollY": 500,
+            });
+        });
+
+        function ShowCreate(type, id) {
+            debugger
+            $("#ClassModel").modal("show");
+        };
+
+    </script>
+}
+

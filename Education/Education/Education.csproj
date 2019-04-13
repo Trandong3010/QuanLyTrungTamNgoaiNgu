@@ -201,6 +201,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
@@ -213,6 +215,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\ClassDAO.cs" />
     <Compile Include="DAO\ShiftDAO.cs" />
     <Compile Include="DAO\StudentDAO.cs" />
     <Compile Include="DAO\TeacherDAO.cs" />
@@ -280,6 +283,12 @@
     <Content Include="Scripts\React\lib\react-dom.development.js" />
     <Content Include="Scripts\React\lib\react.development.js" />
     <Content Include="Scripts\React\Login\Login.jsx" />
+    <Content Include="Areas\Admin\Views\Category\CategoryModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Class\ClassModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Class\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Class\Index.cshtml" />
     <None Include="Scripts\React\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

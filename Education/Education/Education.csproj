@@ -289,7 +289,10 @@
     <Content Include="Areas\Admin\Views\Class\ClassModel.cshtml" />
     <Content Include="Areas\Admin\Views\Class\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Class\Index.cshtml" />
-    <None Include="Scripts\React\Student.jsx" />
+    <Content Include="Scripts\React\Student\Add_Edit.jsx" />
+    <Content Include="Areas\Admin\Views\Student\Model.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\Delete.cshtml" />
+    <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\ShiftModel.cshtml" />
@@ -343,6 +346,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <None Include="Scripts\React\Student\Student1.jsx" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

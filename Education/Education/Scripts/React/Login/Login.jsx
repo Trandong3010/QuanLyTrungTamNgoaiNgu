@@ -1,46 +1,83 @@
 ﻿'use strict';
-export const Login = user => {
-    return axios.post('/Login/CheckValidaUser', {
-        Username = user.Username,
-        Password = user.Password
-    }).then(function (response) {
-        console.log(response);
-    })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 class App extends React.Component {
     constructor(props) {
+        super(props);
         this.state = {
             Username: '',
             Password: ''
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+    onChange(event) {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
     }
 
-    onSubmit(e) {
-        e.preventDefault()
-
-        const user = {
-            Username: this.state.Username,
-            Password: this.state.Password
+    handleSubmit() {
+        event.preventDefault();
+        const { Username, Password } = this.state;
+        if (!(Username && Password)) {
+            return;
         }
+        // let data = {
+        //     Username: Username,
+        //     Password: Password
+        // };
+        // if (Username !== '' && Password !== '') {
+        //     console.log('Username:', Username, 'Password:', Password);
 
-        Login(user).then(res => {
-            if (res) {
-                console.log(res)
-            }
-        })
+        //     fetch("/Login/CheckValidaUser", {
+        //         method: 'POST',
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         mode: "cors",
+        //         body: JSON.stringify(data)
+        //     })
+        //         .then(response => response.json())
+        //         .then(data => window.location.href = "/Admin/TrangChu/Index")
+        //         .catch(error => console.log(error));
 
+
+        // } else {
+        //     // alert('no')
+        // }
+        this.FetchData(Username, Password);
     }
 
+    FetchData(Username, Password) {
+        let data = {
+            Username: Username,
+            Password: Password
+        };
+        if (Username !== '' && Password !== '') {
+            console.log('Username:', Username, 'Password:', Password);
+
+            fetch("/Login/CheckValidaUser", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                mode: "cors",
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => window.location.href = "/Admin/TrangChu/Index")
+                .catch(error => console.log(error));
+
+
+        } else {
+            alert('no')
+        }
+    }
 
 
     render() {
+        var Username = this.state.Username;
+        var Password = this.state.Password;
         return (
             <div className="container">
                 <div className="row form-container">
@@ -48,28 +85,28 @@ class App extends React.Component {
                         <div className="login-panel">
                             <div className="panel-body">
                                 <div className="form-group">
-                                    <h2 className="panel-title"> TRUNG TÂM NGOẠI NGỮ1 </h2>
+                                    <h2 className="panel-title"> TRUNG TÂM NGOẠI NGỮ </h2>
                                 </div>
-                                <form id="loginform" method="post" onsubmit="{this.onSubmit}">
-                                    <div id="msgerorr"><ul style={{ color: 'red' }}>Đăng nhập thất bại! Yêu cầu bạn nhập tên đăng nhập và mật khẩu!</ul></div>
-                                    <div id="msg"><ul style={{ color: 'red' }}>Tên đăng nhập hoặc mật khẩu không hợp lệ!</ul></div>
+                                <form method="post"
+                                onSubmit={this.handleSubmit}
+
+                                >
                                     <div className="form-group">
                                         <div className="input-group">
                                             <span className="input-group-addon"><i className="glyphicon glyphicon-user" /></span>
-                                            <input className="form-control" placeholder="Tên đăng nhập" id="Username" name="Username" type="text" autofocus />
-                                            <span id="msgUsername" style={{ color: 'red' }}>Tên đăng nhập chưa tồn tại!</span>
+                                            <input className="form-control" value={Username} onChange={(event) => this.onChange(event)} placeholder="Tên đăng nhập" id="Username" name="Username" type="text" />
                                         </div>
                                     </div>
                                     <div className="form-group">
                                         <div className="input-group">
                                             <span className="input-group-addon"><i className="glyphicon glyphicon-lock" /></span>
-                                            <input className="form-control" placeholder="Mật khẩu" id="Password" name="password" type="Password" defaultValue />
+                                            <input className="form-control" value={Password} onChange={(event) => this.onChange(event)} placeholder="Mật khẩu" id="Password" name="Password" type="Password" />
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <a href><p className="text-right">Quên mật khẩu</p></a>
+                                        <a ><p className="text-right">Quên mật khẩu</p></a>
                                     </div>
-                                    <button type="submit" href="index.html" className="btn btn-success btn-block"><i className="glyphicon glyphicon-log-in" /> Đăng nhập</button>
+                                    <button type="submit" className="btn btn-success btn-block" ><i className="glyphicon glyphicon-log-in" /> Đăng nhập</button>
                                 </form>
                             </div>
                         </div>

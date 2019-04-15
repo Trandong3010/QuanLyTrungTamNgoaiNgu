@@ -31,35 +31,35 @@ namespace Education.Areas.Admin.Controllers
 		[HttpPost]
 		public ActionResult CheckValidaUser(User model)
 		{
-			string result = "Fail";
+			bool result = false;
 			var DataItem = db.Users.Where(x => x.Username == model.Username && x.Password == model.Password).SingleOrDefault();
-			var RoleName = userdao.GetByIDRole(int.Parse(DataItem.IDRole));
-			if (DataItem.Username != null && DataItem.Password != null)
+			
+			if (DataItem != null)
 			{
+				var RoleName = userdao.GetByIDRole(int.Parse(DataItem.IDRole));
 				//Session["RoleName"] = DataItem.IDRole.ToString();
-				
+
 				Session["RoleName"] = RoleName;
 				Session["IDUser"] = DataItem.ID.ToString();
-
 				Session["Username"] = DataItem.Username.ToString();
-				result = "Success";
+				result = true;
 			}
 			else
 			{
-
+				result = false;
 			}
-			return Json(result, JsonRequestBehavior.DenyGet);
+			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
 		public ActionResult CheckRole()
 		{
-			if (Session["Role"] != null)
+			if (Session["IDUser"] != null)
 			{
-				return RedirectToAction("Index", "TrangChu");
+				return RedirectToAction("Index", "Admin/TrangChu");
 			}
 			else
 			{
-				return RedirectToAction("Index", "Login");
+				return RedirectToAction("Index", "Admin/Login");
 			}
 		}
 

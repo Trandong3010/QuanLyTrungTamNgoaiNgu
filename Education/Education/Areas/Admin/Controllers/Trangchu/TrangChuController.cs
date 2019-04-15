@@ -11,7 +11,15 @@ namespace Education.Areas.Admin.Controllers.Trangchu
         // GET: Admin/TrangChu
         public ActionResult Index()
         {
-            return View();
-        }
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
+			//return View();
+		}
 	}
 }

@@ -51,7 +51,7 @@ namespace Education.Areas.Admin
 	    context.MapRoute(
                 "Class",
                 "Admin/Class",
-               new { Controller = "Shift", action = "Index", id = UrlParameter.Optional }
+               new { Controller = "Class", action = "Index", id = UrlParameter.Optional }
             );
 
             context.MapRoute(

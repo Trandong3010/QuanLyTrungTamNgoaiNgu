@@ -1,0 +1,161 @@
+﻿
+<div class="modal fade" id="ModalView">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header bg-blue">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Tài khoản</h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									THÔNG TIN CHUNG
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="card" style="width: 100%;">
+												<img class="card-img-top"
+													 src="https://danongonline.com.vn/wp-content/uploads/2018/02/anh-girl-xinh-9-1.jpg"
+													 alt="Card image cap">
+												<div class="card-body text-center">
+													<h5 class="card-title">Nguyễn Văn A</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-9">
+											<form>
+												<div class="row">
+													<div class="col">
+														<label class="bmd-label-floating">Họ và tên</label>
+														<input type="text" class="form-control" placeholder="Họ và tên">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Giới tính</label>
+														<input type="text" class="form-control" placeholder="Giới tính">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Trạng thái</label>
+														<input type="text" class="form-control" placeholder="Trạng thái">
+													</div>
+												</div>
+												<div class="row" style="padding-top:1%;">
+													<div class="col">
+														<label class="bmd-label-floating">Địa chỉ</label>
+														<input type="text" class="form-control" placeholder="Địa chỉ">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Số điện thoại</label>
+														<input type="text" class="form-control" placeholder="Số điện thoại">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Chứng minh nhân dân</label>
+														<input type="text" class="form-control" placeholder="Chứng minh nhân dân">
+													</div>
+												</div>
+												<div class="row" style="padding-top:1%;">
+													<div class="col">
+														<label class="bmd-label-floating">Ngày sinh</label>
+														<input type="text" class="form-control" placeholder="Ngày sinh">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Nơi sinh</label>
+														<input type="text" class="form-control" placeholder="Nơi sinh">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Địa chỉ thường trú</label>
+														<input type="text" class="form-control" placeholder="Địa chỉ thường trú">
+													</div>
+												</div>
+												<div class="row" style="padding-top:1%;">
+													<div class="col">
+														<label class="bmd-label-floating">Trình độ học vấn</label>
+														<input type="text" class="form-control" placeholder="Trình độ học vấn">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Email</label>
+														<input type="text" class="form-control" placeholder="Email">
+													</div>
+													<div class="col">
+														<label class="bmd-label-floating">Nơi công tác</label>
+														<input type="text" class="form-control" placeholder="Nơi công tác">
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+
+			</div>
+
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+	//function Add_Edit() {
+	//	debugger
+	//	//var ID = $("#txtID").val();
+	//	//var Username = $("#txtUsername").val();
+	//	//var Password = $("#txtPassword").val();
+	//	//var Email = $("#txtEmail").val();
+	//	var HTML = ``;
+	//	var data = $("#Add_Edit_Users").serialize();
+	//	$.ajax({
+	//		url: "/TaiKhoan/Save",
+	//		type: "post",
+	//		data: data,
+	//		success: function (result) {
+	//			//window.location.href = "/Admin/TaiKhoan/Index";
+	//			$("#Modal1").modal("hide");
+	//			HTML += `
+	//					<div class ="alert alert-warning">
+	//						<strong>Thành công!</strong> Lưu thành công.
+	//					</div>
+	//				`;
+	//			location.reload();
+	//		}
+	//	});
+	//};
+
+	function Show_View(t) {
+		debugger
+		$("#ModalView").modal("show");
+		//if (type == 'Add') {
+		//	$("#txtUsername").val("");
+		//	$("#txtPassword").val("");
+		//	$("#txtEmail").val("");
+		//}
+		//else {
+		//	$.ajax({
+		//		url: "/TaiKhoan/GetUsersById?id=" + t,
+		//		type: "post",
+		//		dataType: "json",
+		//		success: function (item) {
+		//			$("#txtUsername").val(item.Username);
+		//			$("#txtPassword").val(item.Password);
+		//			$("#txtEmail").val(item.Email);
+		//			$("#txtID").val(t);
+		//		}
+		//	});
+		//}
+
+	};
+
+</script>
+

@@ -1,0 +1,117 @@
+﻿<div class="modal fade" id="Modal1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-blue">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Tài khoản</h4>
+			</div>
+
+			<div class="modal-body">
+				<form id="Add_Edit_Users">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-3 control-label"></label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control hidden" name="ID" id="txtID">
+						</div>
+					</div>
+					<br />
+					<br />
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-3 control-label">Tên đăng nhập</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control hidden" name="ID" id="txtID">
+							<input type="text" class="form-control" name="Username" id="txtUsername" placeholder="Nhập tên đăng nhập">
+						</div>
+					</div>
+					<br />
+					<br />
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-3 control-label">Mật khẩu</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" name="Password" id="txtPassword" placeholder="Nhập mật khẩu">
+						</div>
+					</div>
+					<br />
+					<br />
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="Email" id="txtEmail" placeholder="Nhập Email">
+						</div>
+					</div>
+					<br />
+					<br />
+					<div class="clearfix"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary pull-right" onclick="Add_Edit()">Lưu</button>
+						<button type="button" class="btn pull-right btn-danger" data-dismiss="modal">Đóng</button>
+					</div>
+					<br />
+					<br />
+				</form>
+			</div>
+			<div class="modal-footer">
+
+			</div>
+
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+	function Add_Edit() {
+		debugger
+		//var ID = $("#txtID").val();
+		//var Username = $("#txtUsername").val();
+		//var Password = $("#txtPassword").val();
+		//var Email = $("#txtEmail").val();
+		var HTML = ``;
+		var data = $("#Add_Edit_Users").serialize();
+		$.ajax({
+			url: "/TaiKhoan/Save",
+			type: "post",
+			data: data,
+			success: function (result) {
+				//window.location.href = "/Admin/TaiKhoan/Index";
+				$("#Modal1").modal("hide");
+				HTML += `
+						<div class ="alert alert-warning">
+							<strong>Thành công!</strong> Lưu thành công.
+						</div>
+					`;
+				location.reload();
+			}
+		});
+	};
+
+	function Show_Create_Edit(type, t) {
+		debugger
+		$("#Modal1").modal("show");
+		if (type == 'Add') {
+			$("#txtUsername").val("");
+			$("#txtPassword").val("");
+			$("#txtEmail").val("");
+		}
+		else {
+			$.ajax({
+				url: "/TaiKhoan/GetUsersById?id=" + t,
+				type: "post",
+				dataType: "json",
+				success: function (item) {
+					$("#txtUsername").val(item.Username);
+					$("#txtPassword").val(item.Password);
+					$("#txtEmail").val(item.Email);
+					$("#txtID").val(t);
+				}
+			});
+		}
+
+	};
+
+</script>
+

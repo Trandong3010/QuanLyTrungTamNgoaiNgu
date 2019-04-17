@@ -1,94 +1,116 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            @*<div class="panel-heading">
-                    <h4>Danh sách nhân viên</h4>
-                </div>*@
-            <div class="panel-body">
-                <a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
-                <table class="table table-striped table-bordered table-hover" id="dataTable-example">
-                    <thead>
-                        <tr>
-                            <th>Tên</th>
-                            <th>Mô tả</th>
-                            <th>Trạng thái</th>
-                            <th>Địa chỉ</th>
-                            <th>Điện thoại</th>
-                            <th>Ngày sinh</th>
-                            <th>Nơi sinh</th>
-                            <th>Trình độ học vấn</th>
-                            <th>Giới tính</th>
-                            <th>CMND</th>
-                            <th>Mã người dùng</th>
-                            <th>Email</th>
-                            <th>Nơi công tác</th>
-                            <th>Địa chỉ thường trú</th>
-                            <th>Ngoại ngữ</th>
-                            <th>Chức vụ</th>
-                            <th>Hình ảnh</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			@*<div class="panel-heading">
+					<h4>Danh sách nhân viên</h4>
+				</div>*@
+			<div class="panel-body">
+				<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
+				<table class="table table-striped table-bordered table-hover" id="dataTable-example">
+					<thead>
+						<tr>
+							<th>Tên</th>
+							<th>Mô tả</th>
+							<th>Địa chỉ</th>
+							<th>Điện thoại</th>
+							<th>Ngày sinh</th>
+							<th>Nơi sinh</th>
+							<th></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-
+@RenderPage("ViewModel.cshtml")
+@RenderPage("Add_Edit_Model.cshtml")
+@RenderPage("Delete.cshtml")
 @section Myscripts{
-    <script>
-        debugger
-        $(document).ready(function Load_LstTeacher() {
-            $("#dataTable-example").DataTable({
-                ajax: {
-                    url: "/Teacher/GetList",
-                    type: "post",
-                    dataType: "json"
-                },
-                columns: [
+	<script>
+		debugger
+		$(document).ready(function Load_LstTeacher() {
+			$("#dataTable-example").DataTable({
+				ajax: {
+					url: "/Teacher/GetList",
+					type: "post",
+					dataType: "json"
+				},
+				columns: [
                     { data: "Name", autowidth: true },
                     { data: "Description", autowidth: true },
-                    { data: "Status", autowidth: true },
                     { data: "Address", autowidth: true },
                     { data: "Phone", autowidth: true }
                     ,
                     {
-                        data: "BirthDay", autowidth: true
-                        ,render: function (data) {
-                            var jsonDate = data;
-                            var value = new Date(parseInt(jsonDate.substr(6)));
-                            var ret = value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
-                            return ret;
+                    	data: "BirthDay", autowidth: true
+                        , render: function (data) {
+                        	var jsonDate = data;
+                        	var value = new Date(parseInt(jsonDate.substr(6)));
+                        	var ret = value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+                        	return ret;
                         }
 
                     },
                     { data: "BirthPlace", autowidth: true },
-                    { data: "Literacy", autowidth: true },
-                    { data: "Gender", autowidth: true },
-                    { data: "IDCard", autowidth: true },
-                    { data: "IDUser", autowidth: true },
-                    { data: "Email", autowidth: true },
-                    { data: "Company", autowidth: true },
-                    { data: "Domicile", autowidth: true },
-                    { data: "Language", autowidth: true },
-                    { data: "Position", autowidth: true },
-                    { data: "Img", autowidth: true }
-                ],
-                'paging': true,
-                'lengthChange': false,
-                'searching': true,
-                'ordering': false,
-                'info': false,
-                'responsive': true,
-                "scrollY": 500,
-            });
-        });
-    </script>
+                    //{ data: "Literacy", autowidth: true },
+                    //{ data: "Gender", autowidth: true },
+                    //{ data: "IDCard", autowidth: true },
+                    //{ data: "IDUser", autowidth: true },
+                    //{ data: "Email", autowidth: true },
+                    //{ data: "Company", autowidth: true },
+                    //{ data: "Domicile", autowidth: true },
+                    //{ data: "Language", autowidth: true },
+                    //{ data: "Position", autowidth: true },
+                    //{ data: "Img", autowidth: true }
+					{
+						data: "ID", autowidth: true, render: function (data) {
+							return `
+								 <div class ="col-xs-9 ">
+								<div class ="col-xs-4 ">
+									 <a href="#" onclick="Show_View(${data})">
+											<div class ="btn btn-sm btn-warning">
+												<li class ="glyphicon glyphicon-list-alt"></li>
+											</div>
+                                         </a>
+                                     </div>
+                                     <div class ="col-xs-4 ">
+									 <a href="#" onclick="Show_Create_Edit('Edit',${data})">
+											<div class ="btn btn-sm btn-warning">
+												<li class ="glyphicon glyphicon-edit"></li>
+											</div>
+                                         </a>
+                                     </div>
+
+
+                                     <div class ="col-xs-4 ">
+											<a href="#" onclick="ShowDelete(${data})">
+												<div class ="btn btn-sm btn-danger">
+													<li class ="glyphicon glyphicon-trash"></li>
+												</div>
+											</a>
+                                     </div>
+								</div>
+								`;
+						}
+					}
+				],
+				'paging': true,
+				'lengthChange': false,
+				'searching': true,
+				'ordering': false,
+				'info': false,
+				'responsive': true,
+				"scrollY": 500,
+			});
+		});
+	</script>
 }
 
 

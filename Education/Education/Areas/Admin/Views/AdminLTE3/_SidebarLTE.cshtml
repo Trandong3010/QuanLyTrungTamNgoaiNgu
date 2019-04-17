@@ -1,0 +1,253 @@
+﻿@using Education.Models;
+@{
+	UserRole fb = new UserRole();
+
+}
+
+<div class="sidebar-wrapper scrollbar scrollbar-inner">
+	<div class="sidebar-content">
+		@if (Session["RoleName"] != null)
+		{
+			<div class="user">
+				<div class="avatar-sm float-left mr-2">
+					<img src="~/Content/AdminLTE3/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+				</div>
+				<div class="info">
+					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+						<span>
+							@Session["Username"]
+							<span class="user-level">Administrator</span>
+							<span class="caret"></span>
+						</span>
+					</a>
+					<div class="clearfix"></div>
+
+					<div class="collapse in" id="collapseExample">
+						<ul class="nav">
+							<li>
+								<a href="#profile">
+									<span class="link-collapse">My Profile</span>
+								</a>
+							</li>
+							<li>
+								<a href="#edit">
+									<span class="link-collapse">Edit Profile</span>
+								</a>
+							</li>
+							<li>
+								<a href="#settings">
+									<span class="link-collapse">Settings</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		}
+		<ul class="nav nav-primary">
+			<li class="nav-item active">
+				<a data-toggle="collapse" href="#" class="collapsed" aria-expanded="false">
+					<i class="fas fa-home"></i>
+					<p>Trang chủ</p>
+					@*<span class="caret"></span>*@
+				</a>
+				@*<div class="collapse" id="dashboard">
+						<ul class="nav nav-collapse">
+							<li>
+								<a href="../demo1/index.html">
+									<span class="sub-item">Dashboard 1</span>
+								</a>
+							</li>
+							<li>
+								<a href="../demo2/index.html">
+									<span class="sub-item">Dashboard 2</span>
+								</a>
+							</li>
+						</ul>
+					</div>*@
+			</li>
+			<li class="nav-section">
+				<span class="sidebar-mini-icon">
+					<i class="fa fa-ellipsis-h"></i>
+				</span>
+				<h4 class="text-section">QUẢN LÝ</h4>
+			</li>
+			@{ if (Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+				{
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#base">
+							<i class="fas fa-layer-group"></i>
+							<p>Cấu hình hệ thống</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="base">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="/Admin/TaiKhoan/">Quản lý người dùng</a>
+								</li>
+								<li>
+									<a href="/Admin/UserRole/">Cấu hình nhóm quyền</a>
+								</li>
+								<li>
+									<a href="#">Phân quyền</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#sidebarLayouts">
+							<i class="fas fa-th-list"></i>
+							<p>Giáo viên</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="sidebarLayouts">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="/Admin/Teacher/">Quản lý giáo viên</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#forms">
+							<i class="fas fa-pen-square"></i>
+							<p>Nhân viên</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="forms">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="#">Quản lý nhân viên</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				}
+				if (Session["RoleName"].ToString() == "TE" || Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+				{
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#tables">
+							<i class="fas fa-table"></i>
+							<p>Học viên</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="tables">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="/Admin/Student/">Quản lý học viên</a>
+								</li>
+								<li>
+									<a href="#">Quản lý điểm</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				}
+				if (Session["RoleName"].ToString() == "EM" || Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+				{
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#maps">
+							<i class="fas fa-map-marker-alt"></i>
+							<p>Trung tâm</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="maps">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="#">Quản lý lớp học</a>
+								</li>
+								<li>
+									<a href="#">Quản lý khóa học</a>
+								</li>
+								<li>
+									<a href="/Admin/Shift/">Quản lý ca học</a>
+								</li>
+								<li>
+									<a href="/Admin/Category/">Quản lý chương trình học</a>
+								</li>
+								<li>
+									<a href="#">Quản lý môn học</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#charts">
+							<i class="far fa-chart-bar"></i>
+							<p>Danh bạ</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="charts">
+							<ul class="nav nav-collapse">
+								<li>
+									<a href="#">Quản lý danh bạ</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				}
+				@*<li class="nav-item">
+						<a href="widgets.html">
+							<i class="fas fa-desktop"></i>
+							<p>Widgets</p>
+							<span class="badge badge-success">4</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#submenu">
+							<i class="fas fa-bars"></i>
+							<p>Menu Levels</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="submenu">
+							<ul class="nav nav-collapse">
+								<li>
+									<a data-toggle="collapse" href="#subnav1">
+										<span class="sub-item">Level 1</span>
+										<span class="caret"></span>
+									</a>
+									<div class="collapse" id="subnav1">
+										<ul class="nav nav-collapse subnav">
+											<li>
+												<a href="#">
+													<span class="sub-item">Level 2</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<span class="sub-item">Level 2</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a data-toggle="collapse" href="#subnav2">
+										<span class="sub-item">Level 1</span>
+										<span class="caret"></span>
+									</a>
+									<div class="collapse" id="subnav2">
+										<ul class="nav nav-collapse subnav">
+											<li>
+												<a href="#">
+													<span class="sub-item">Level 2</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="#">
+										<span class="sub-item">Level 1</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>*@
+			}
+			<li class="mx-4 mt-2">
+				<a href="" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span></a>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -12,27 +12,15 @@ namespace Education.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class Room
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
-        public string Address { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string BirthPlace { get; set; }
-        public string Literacy { get; set; }
-        public string Gender { get; set; }
-        public string IDCard { get; set; }
-        public Nullable<int> IDUser { get; set; }
-        public string Company { get; set; }
-        public string Domicile { get; set; }
-        public string Language { get; set; }
-        public string Position { get; set; }
-        public string Img { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
-        public string CodeTeacher { get; set; }
+        public string CodeRoom { get; set; }
     }
 }

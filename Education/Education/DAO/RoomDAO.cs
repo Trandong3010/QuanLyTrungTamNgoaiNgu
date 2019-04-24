@@ -1,4 +1,4 @@
-using Education.Models;
+﻿using Education.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,42 +6,39 @@ using System.Web;
 
 namespace Education.DAO
 {
-    public class ShiftDAO
+    public class RoomDAO
     {
         QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
         public Object GetList()
         {
-            var list = db.Shifts.Where(x => x.IsDelete == false).OrderBy(x => x.ID).ToList();
+            var list = db.Rooms.Where(x => x.IsDelete == false).OrderBy(x => x.ID).ToList();
             return list;
         }
 
-        public Object GetShiftById(int id)
+        public Object GetRoomById(int id)
         {
-            var list = db.Shifts.Where(x => x.ID == id).SingleOrDefault();
+            var list = db.Rooms.Where(x => x.ID == id).SingleOrDefault();
             return list;
         }
-        public void Save(Shift item)
+        public void Save(Room item)
         {
             try
             {
-                var old = db.Shifts.Where(x => x.ID == item.ID).FirstOrDefault();
+                var old = db.Rooms.Where(x => x.ID == item.ID).FirstOrDefault();
                 if (item.ID == 0)
                 {
                     item.IsDelete = false;
-                    db.Shifts.Add(item);
+                    db.Rooms.Add(item);
                     db.SaveChanges();
                 }
                 else
                 {
                     if (old != null)
                     {
-                        old.CodeShift = item.CodeShift;
                         old.Name = item.Name;
                         old.Description = item.Description;
                         old.Status = item.Status;
-                        old.IDRoom = item.IDRoom;
-                        old.Period = item.Period;
-                        old.TimeBegin = item.TimeBegin;
+                        old.CodeRoom = item.CodeRoom;
                         db.SaveChanges();
                     }
                 }
@@ -57,7 +54,7 @@ namespace Education.DAO
 
         public Object Delete(int id)
         {
-            var lst = db.Shifts.SingleOrDefault(x => x.IsDelete == false && x.ID == id);
+            var lst = db.Rooms.SingleOrDefault(x => x.IsDelete == false && x.ID == id);
             if (lst != null)
             {
                 lst.IsDelete = true;
@@ -65,7 +62,5 @@ namespace Education.DAO
             }
             return lst;
         }
-
     }
-
 }

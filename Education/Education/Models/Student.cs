@@ -20,9 +20,7 @@ namespace Education.Models
         public Nullable<bool> Gender { get; set; }
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string Address { get; set; }
-        public string Phone { get; set; }
         public string Status { get; set; }
-        public string Email { get; set; }
         public string Img { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public string CreateBy { get; set; }

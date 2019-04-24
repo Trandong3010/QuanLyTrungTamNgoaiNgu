@@ -48,10 +48,15 @@ namespace Education.Areas.Admin
                 "Admin/Category",
                new { Controller = "Category", action = "Index", id = UrlParameter.Optional }
             );
-	    context.MapRoute(
+	        context.MapRoute(
                 "Class",
                 "Admin/Class",
                new { Controller = "Class", action = "Index", id = UrlParameter.Optional }
+            );
+            context.MapRoute(
+                "Room",
+                "Admin/Room",
+               new { Controller = "Room", action = "Index", id = UrlParameter.Optional }
             );
 
             context.MapRoute(

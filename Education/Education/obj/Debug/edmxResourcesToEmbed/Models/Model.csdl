@@ -2,15 +2,17 @@
 <Schema Namespace="QuanLyTrungTamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="QuanLyTrungTamEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
+    <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
+    <EntitySet Name="Contacts" EntityType="QuanLyTrungTamModel.Contact" />
     <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
     <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
     <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
+    <EntitySet Name="Rooms" EntityType="QuanLyTrungTamModel.Room" />
     <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
     <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
     <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
     <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
     <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
-    <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
     <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
   </EntityContainer>
   <EntityType Name="Category">
@@ -25,6 +27,33 @@
     <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <Property Name="CodeCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDTeacher" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CodeClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDCourse" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="QuantityOfStudents" Type="Int32" />
+    <Property Name="TotalLessons" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Permision">
     <Key>
@@ -58,6 +87,19 @@
     <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
   </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CodeRoom" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="Shift">
     <Key>
       <PropertyRef Name="ID" />
@@ -68,8 +110,8 @@
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
     <Property Name="IDRoom" Type="Int32" />
+    <Property Name="TimeBegin" Type="DateTime" Precision="3" />
     <Property Name="Period" Type="Int32" />
-    <Property Name="TimeBegin" Type="DateTime" Precision="0" />
     <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -98,14 +140,12 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="BirthDay" Type="DateTime" Precision="3" />
     <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Literacy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IDUser" Type="Int32" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -137,24 +177,6 @@
     <Property Name="Status" Type="Boolean" />
     <Property Name="IsDelete" Type="Boolean" />
   </EntityType>
-  <EntityType Name="Class">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IDTeacher" Type="Int32" />
-    <Property Name="IsDelete" Type="Boolean" />
-    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CreateTime" Type="DateTime" Precision="3" />
-    <Property Name="CodeClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="IDCourse" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Level" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="QuantityOfStudents" Type="Int32" />
-    <Property Name="TotalLessons" Type="Int32" />
-  </EntityType>
   <EntityType Name="Student">
     <Key>
       <PropertyRef Name="ID" />
@@ -165,9 +187,7 @@
     <Property Name="Gender" Type="Boolean" />
     <Property Name="BirthDay" Type="DateTime" Precision="7" />
     <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
     <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

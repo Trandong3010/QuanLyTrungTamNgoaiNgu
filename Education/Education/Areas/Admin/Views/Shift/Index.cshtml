@@ -1,40 +1,60 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    List<Education.Models.Shift> lst = ViewBag.shifts as List<Education.Models.Shift>;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLTE.cshtml";
 }
 
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Quản lý ca học</h1>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            @*<div class="panel-heading">
-                    <h4>Danh sách nhân viên</h4>
-                </div>*@
-            <div class="panel-body">
-                <a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)">
-                    <li class="glyphicon glyphicon-list-alt">
-                    </li> Thêm
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
                 </a>
-                <table class="table table-striped table-bordered table-hover" id="dataTable-example">
-                    <thead>
-                        <tr>
-                            <th>Tên ca học</th>
-                            <th>Mô tả</th>
-                            <th>Trạng thái</th>
-                            <th>IDRoom</th>
-                            <th>Khoảng thời gian</th>
-                            <th>Thời gian bắt đầu</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Trung tâm</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Quản lý lớp học</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title"></h4>
+                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#ShiftModal">
+                            <i class="fa fa-plus"></i>
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Modal -->
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTable-shift">
+                            <thead>
+                                <tr>
+                                    <th>Mã ca học</th>
+                                    <th>Tên ca học</th>
+                                    <th>Trạng thái</th>
+                                    <th>Khoảng thời gian</th>
+                                    <th>Thời gian bắt đầu</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -44,17 +64,24 @@
 @section Myscripts{
     <script>
         $(document).ready(function Load_danhsach () {
-            $("#dataTable-example").DataTable({
+            $("#dataTable-shift").DataTable({
                 ajax: {
                     url: "/Shift/GetShifts",
                     type: "Post",
                     datatype: "json"
                 },
                 columns: [
+                    { data: "CodeShift", autowidth: true },
 					{ data: "Name", autowidth: true },
-					{ data: "Description", autowidth: true },
-					{ data: "Status", autowidth: true },
-                    { data: "IDRoom", autowidth: true },
+					//{ data: "Description", autowidth: true },
+					{
+					     data: "Status", autowidth: true,
+					     render: function (data)
+					     {
+					         return data == 1 ? "Ngừng hoạt động" : "Đang hoạt động";
+					     }
+					},
+                    //{ data: "IDRoom", autowidth: true },
                     { data: "Period", autowidth: true },
                     { data: "TimeBegin", autowidth: true ,
                     render : function(data){
@@ -69,40 +96,37 @@
                         }
                     
                     },
-
 					{
 					    data: "ID", autowidth: true, render: function (data)
 					    {
 					        return `
-					        <div class ="col-xs-12 ">
+					        <div class ="col-xs-9 form-button-action ">
                                 <div class ="col-xs-4 ">
                                     <a href="#" onclick="Show_Create_Edit('Edit',${data})">
-                                       <div class ="btn btn-sm btn-warning">
-                                           <li class ="glyphicon glyphicon-edit"></li>
-                                       </div>
+                                       <button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                            <i class ="fa fa-edit"></i>
+                                       </button>
                                     </a>
                                 </div>
-
-
                                 <div class ="col-xs-4 ">
                                        <a href="#" onclick="ShowDelete(${data})">
-                                           <div class ="btn btn-sm btn-danger">
-                                               <li class ="glyphicon glyphicon-trash"></li>
-                                           </div>
+                                            <button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-danger" data-original-title="Remove">
+                                                <i class ="fa fa-times"></i>
+                                            </button>
                                        </a>
                                 </div>
                            </div>
-								`;
+                                `;
 					    }
 					}
                 ],
                 'paging': true,
-                'lengthChange': false,
+                'lengthChange': true,
                 'searching': true,
-                'ordering': false,
+                'ordering': true,
                 'info': false,
                 'responsive': true,
-                "scrollY": 500,
+                "scrollY": 300,
             });
         });
 
@@ -110,28 +134,6 @@
             debugger
             $("#ShiftModal").modal("show");
         };
-
-        //function ShowEdit(t) {
-        //	$("#Modal1").modal("show");
-        //	if(t!= 0)
-        //	{
-        //		$.ajax({
-        //			url: "/TaiKhoan/GetUsersById?id=" + t,
-        //			type: "GET",
-        //			datatype: "JSON",
-        //			success: function (value) {
-        //				var obj = JSON.parse(value);
-        //				$("#txtUsername").val(obj.Name);
-        //				$("#txtPassword").val(obj.Name);
-        //				$("#txtEmail").val(obj.Name);
-        //			}
-        //		});
-        //	}
-
-        //};
-
-
-
     </script>
 }
 

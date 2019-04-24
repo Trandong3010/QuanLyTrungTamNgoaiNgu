@@ -1,0 +1,105 @@
+﻿<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header no-bd">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">
+                        Phòng
+                    </span>
+                    <span class="fw-light">
+                        Học
+                    </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="Add_Edit_Rooms">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mã phòng</label>
+                        <div class="col-sm-12">
+                            <input type="hidden" class="form-control" name="ID" id="txtID">
+                            <input type="text" class="form-control" name="CodeRoom" id="txtCodeRoom" placeholder="Nhập mã phòng">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Tên phòng</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên phòng">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-12">
+                            <select name="Status" id="txtStatus">
+                                <option value="0">Đang hoạt động</option>
+                                <option value="1">Ngừng hoạt động</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right" onclick="Add_Edit()">Lưu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+<script>
+    function Add_Edit() {
+        debugger
+        var HTML = ``;
+        var data = $("#Add_Edit_Rooms").serialize();
+        $.ajax({
+            url: "/Room/Save",
+            type: "post",
+            data: data,
+            success: function (result) {
+                $("#RoomModal").modal("hide");
+                HTML += `
+						<div class ="alert alert-warning">
+							<strong>Thành công!</strong> Lưu thành công.
+						</div>
+					`;
+				location.reload();
+            }
+        });
+    };
+
+	function Show_Create_Edit(type, t) {
+		debugger
+		$("#addRowModal").modal("show");
+		if (type == 'Add') {
+			$("#txtCodeRoom").val("");
+			$("#txtName").val("");
+			$("#txtStatus").val("");
+            $("#txtDescription").val("");
+		}
+		else {
+			$.ajax({
+				    url: "/Room/GetRoomById?id=" + t,
+				    type: "post",
+				    dataType: "json",
+				    success: function (item) {
+                        $("#txtCodeRoom").val(item.CodeRoom);
+                        $("#txtName").val(item.Name);
+                        $("#txtStatus").val(item.Status);
+                        $("#txtDescription").val(item.Description);
+                        $("#txtID").val(t);
+				    }
+				});
+		}
+
+	};
+
+</script>

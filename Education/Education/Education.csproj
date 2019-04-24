@@ -206,6 +206,7 @@
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="DAO\BaseDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\ClassDAO.cs" />
+    <Compile Include="DAO\RoomDAO.cs" />
     <Compile Include="DAO\ShiftDAO.cs" />
     <Compile Include="DAO\StudentDAO.cs" />
     <Compile Include="DAO\TeacherDAO.cs" />
@@ -230,6 +232,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Class.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -256,6 +261,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role_Detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Room.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shift.cs">
@@ -799,6 +807,9 @@
     <Content Include="Areas\Admin\Views\AdminLTE3\_ControlSidebar.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLTE3\_Logo.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLTE3\_Footer.cshtml" />
+    <Content Include="Areas\Admin\Views\Room\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Room\RoomModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Room\Delete.cshtml" />
     <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

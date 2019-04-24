@@ -1,4 +1,4 @@
-﻿<div class="modal modal-danger fade" id="Model_Delete">
+﻿<div class="modal modal-danger fade" id="Modal_Delete">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,14 +26,14 @@
     function ShowDelete(id) {
         debugger
         $("#IdDelete").val(id);
-        $("#Model_Delete").modal("show");
+        $("#Modal_Delete").modal("show");
     };
-    function Delete(id) {
+    function Delete() {
         debugger
         var Id = $("#IdDelete").val();
         $.ajax({
-            url: "/Class/Delete?id=" + Id,
-            type: "post",            
+            url: "/Room/Delete?id=" + Id,
+            type: "post",
             dataType: "json",
             success: function (data) {
                 location.reload();

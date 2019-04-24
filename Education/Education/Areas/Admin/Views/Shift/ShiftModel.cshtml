@@ -1,85 +1,74 @@
-﻿<div class="modal fade" id="ShiftModal">
-    <div class="modal-dialog">
+﻿<div class="modal fade" id="ShiftModel" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-blue">
+            <div class="modal-header no-bd">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">
+                        Ca
+                    </span>
+                    <span class="fw-light">
+                        Học
+                    </span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Ca học</h4>
             </div>
-
             <div class="modal-body">
                 <form id="Add_Edit_Shifts">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label"></label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mã ca học</label>
+                        <div class="col-sm-12">
+                            <input type="hidden" class="form-control" name="ID" id="txtID">
+                            <input type="text" class="form-control" name="CodeShift" id="txtCodeShift" placeholder="Nhập mã ca học">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">
-                            Tên ca học
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control hidden" name="ID" id="txtID">
-                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên ">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Tên ca học</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên ca học">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Status" id="txtStatus" placeholder="Nhập trạng thái">
+                        <div class="col-sm-12">
+                            <select name="Status" id="txtStatus">
+                                <option value="0">Đang hoạt động</option>
+                                <option value="1">Ngừng hoạt động</option>
+                            </select>
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-3 control-label">Phòng</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="IDRoom" id="txtIDRoom" placeholder="Nhập phòng" />
+                        <label for="inputPassword3" class="col-sm-3 control-label">Tên phòng</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="IDRoom" id="txtDRoom" placeholder="Nhập phòng">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-3 control-label">Khoảng thời gian</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Period" id="txtPeriod" placeholder="Nhập thời gian ">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Số giờ</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Period" id="txtPeriod" placeholder="Nhập số giờ">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Thời gian bắt đầu</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="TimeBegin" id="txtTimeBegin" placeholder="Nhập thời gian ">
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control" name="TimeBegin" id="txtTimeBegin" placeholder="Nhập thời gian bắt đầu">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="clearfix"></div>
                     <div class="form-group">
-                        <button type="button" class="btn pull-left btn-flat btn-danger" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Lưu</button>
+                        <button type="submit" class="btn btn-primary pull-right" onclick="Add_Edit()">Lưu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                     </div>
-                    <br />
-                    <br />
                 </form>
             </div>
-
-
         </div>
         <!-- /.modal-content -->
     </div>
@@ -96,7 +85,7 @@
             type: "post",
             data: data,
             success: function (result) {
-                $("#ShiftModal").modal("hide");
+                $("#ShiftModel").modal("hide");
                 HTML += `
                     <div class ="alert alert-warning">
                         <strong>Thành công!<strong> Lưu thành công.
@@ -109,9 +98,10 @@
 
     function Show_Create_Edit(type,t) {
         debugger
-        $("#ShiftModal").modal("show");
+        $("#ShiftModel").modal("show");
         if (type == 'Add')
         {
+            $("#txtCodeShift").val("");
             $("#txtName").val("");
             $("#txtDescription").val("");
             $("#txtStatus").val("");
@@ -125,6 +115,7 @@
                 type: "post",
                 dataType: "json",
                 success: function (item) {
+                    $("#txtCodeShift").val(item.CodeShift);
                     $("#txtName").val(item.Name);
                     $("#txtDescription").val(item.Description);
                     $("#txtStatus").val(item.Status);

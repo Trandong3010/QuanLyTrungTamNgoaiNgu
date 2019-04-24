@@ -21,5 +21,11 @@ namespace Education.Areas.Admin.Controllers
         {
             return View();
         }
-    }
+		[HttpPost]
+		public JsonResult GetTeacherById(int id)
+		{
+			var lst = dao.GetTeacherById(id);
+			return Json(lst, JsonRequestBehavior.AllowGet);
+		}
+	}
 }

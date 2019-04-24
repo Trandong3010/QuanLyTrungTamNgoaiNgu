@@ -209,6 +209,7 @@
     <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubjectController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trangchu\TrangChuController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="DAO\RoomDAO.cs" />
     <Compile Include="DAO\ShiftDAO.cs" />
     <Compile Include="DAO\StudentDAO.cs" />
+    <Compile Include="DAO\SubjectDAO.cs" />
     <Compile Include="DAO\TeacherDAO.cs" />
     <Compile Include="DAO\UserRoleDAO.cs" />
     <Compile Include="DAO\UsersDAO.cs" />
@@ -235,6 +237,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactList_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -269,10 +274,19 @@
     <Compile Include="Models\Shift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Teacher.cs">
@@ -810,6 +824,9 @@
     <Content Include="Areas\Admin\Views\Room\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Room\RoomModel.cshtml" />
     <Content Include="Areas\Admin\Views\Room\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Subject\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Subject\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Subject\SubjectModel.cshtml" />
     <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

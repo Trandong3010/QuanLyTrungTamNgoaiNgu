@@ -14,5 +14,11 @@ namespace Education.DAO
             var lst = db.Teachers.ToList();
             return lst;
         }
-    }
+
+		public Object GetTeacherById(int id)
+		{
+			var list = db.Teachers.SingleOrDefault(x => x.ID == id);
+			return list;
+		}
+	}
 }

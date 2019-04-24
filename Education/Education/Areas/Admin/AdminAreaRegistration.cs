@@ -59,7 +59,13 @@ namespace Education.Areas.Admin
                new { Controller = "Room", action = "Index", id = UrlParameter.Optional }
             );
 
-            context.MapRoute(
+			context.MapRoute(
+				"Subject",
+				"Admin/Subject",
+			   new { Controller = "Subject", action = "Index", id = UrlParameter.Optional }
+			);
+
+			context.MapRoute(
 			   "Admin_default",
 				"Admin/{controller}/{action}/{id}",
 			   new { Controller = "Login", action = "index", id = UrlParameter.Optional }

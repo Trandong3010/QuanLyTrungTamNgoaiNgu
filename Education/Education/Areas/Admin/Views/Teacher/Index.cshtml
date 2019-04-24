@@ -1,34 +1,62 @@
 ﻿
 @{
 	ViewBag.Title = "Index";
-	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutLTE.cshtml";
 }
 
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			@*<div class="panel-heading">
-					<h4>Danh sách nhân viên</h4>
-				</div>*@
-			<div class="panel-body">
-				<a href="#" class="btn btn-danger" onclick="Show_Create_Edit('Add',0)"><li class="glyphicon glyphicon-list-alt"></li> Thêm</a>
-				<table class="table table-striped table-bordered table-hover" id="dataTable-example">
-					<thead>
-						<tr>
-							<th>Tên</th>
-							<th>Mô tả</th>
-							<th>Địa chỉ</th>
-							<th>Điện thoại</th>
-							<th>Ngày sinh</th>
-							<th>Nơi sinh</th>
-							<th></th>
-						</tr>
-					</thead>
-				</table>
+<div class="page-inner">
+	<div class="page-header">
+		<ul class="breadcrumbs">
+			<li class="nav-home">
+				<a href="#">
+					<i class="flaticon-home"></i>
+				</a>
+			</li>
+			<li class="separator">
+				<i class="flaticon-right-arrow"></i>
+			</li>
+			<li class="nav-item">
+				<a href="#">Cấu hình hệ thống</a>
+			</li>
+			<li class="separator">
+				<i class="flaticon-right-arrow"></i>
+			</li>
+			<li class="nav-item">
+				<a href="#">Quản lý tài khoản</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex align-items-center">
+						<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="Show_Create_Edit('Add',0)" data-target="#addRowModal">
+							<i class="fa fa-plus"></i>
+							Thêm
+						</button>
+					</div>
+				</div>
+				<div class="card-body">
+					<!-- Modal -->
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover" id="dataTable-example">
+							<thead>
+								<tr>
+									<th>Tên</th>
+									<th>Mô tả</th>
+									<th>Địa chỉ</th>
+									<th></th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 @RenderPage("ViewModel.cshtml")
 @RenderPage("Add_Edit_Model.cshtml")
 @RenderPage("Delete.cshtml")
@@ -46,19 +74,17 @@
                     { data: "Name", autowidth: true },
                     { data: "Description", autowidth: true },
                     { data: "Address", autowidth: true },
-                    { data: "Phone", autowidth: true }
-                    ,
-                    {
-                    	data: "BirthDay", autowidth: true
-                        , render: function (data) {
-                        	var jsonDate = data;
-                        	var value = new Date(parseInt(jsonDate.substr(6)));
-                        	var ret = value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
-                        	return ret;
-                        }
+                    //{
+                    //	data: "BirthDay", autowidth: true
+                    //    , render: function (data) {
+                    //    	var jsonDate = data;
+                    //    	var value = new Date(parseInt(jsonDate.substr(6)));
+                    //    	var ret = value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+                    //    	return ret;
+                    //    }
 
-                    },
-                    { data: "BirthPlace", autowidth: true },
+                    //},
+                    //{ data: "BirthPlace", autowidth: true },
                     //{ data: "Literacy", autowidth: true },
                     //{ data: "Gender", autowidth: true },
                     //{ data: "IDCard", autowidth: true },
@@ -72,31 +98,29 @@
 					{
 						data: "ID", autowidth: true, render: function (data) {
 							return `
-								 <div class ="col-xs-9 ">
-								<div class ="col-xs-4 ">
+								 
+								<div class ="col-xs-3 ">
 									 <a href="#" onclick="Show_View(${data})">
-											<div class ="btn btn-sm btn-warning">
-												<li class ="glyphicon glyphicon-list-alt"></li>
-											</div>
+											<button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+												<i class ="fa fa-edit"></i>
+											</button>
                                          </a>
-                                     </div>
-                                     <div class ="col-xs-4 ">
+
 									 <a href="#" onclick="Show_Create_Edit('Edit',${data})">
-											<div class ="btn btn-sm btn-warning">
-												<li class ="glyphicon glyphicon-edit"></li>
-											</div>
+											<button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+												<i class ="fa fa-edit"></i>
+											</button>
                                          </a>
-                                     </div>
 
 
-                                     <div class ="col-xs-4 ">
+
+
 											<a href="#" onclick="ShowDelete(${data})">
-												<div class ="btn btn-sm btn-danger">
-													<li class ="glyphicon glyphicon-trash"></li>
-												</div>
+												<button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-danger" data-original-title="Remove">
+												<i class ="fa fa-times"></i>
+											</button>
 											</a>
                                      </div>
-								</div>
 								`;
 						}
 					}

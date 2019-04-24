@@ -1,0 +1,136 @@
+﻿<div class="modal fade" id="SubjectModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Môn học</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="Add_Edit_Subject">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                        </div>
+                    </div>
+                    <br />
+                    \<br />
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Mã môn học
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                            <input type="text" class="form-control" name="CodeSubject" id="txtCodeSubject" placeholder="Nhập mã ">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Tên môn học
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên ">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-9">
+                            <select name="Status" id="txtStatus">
+                                <option value="0">Đang hoạt động</option>
+                                <option value="1">Ngừng hoạt động</option>
+                            </select>
+                            @*<input type="text" class="form-control" name="Status" id="txtStatus" placeholder="Nhập trạng thái">*@
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Kiểu</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Type" id="txtType" placeholder="Nhập kiểu">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <button type="button" class="btn pull-left btn-flat btn-danger" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Lưu</button>
+                    </div>
+                    <br />
+                    <br />
+                </form>
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    function Add_Edit() {
+        debugger
+        var HTML = ``;
+        var data = $("#Add_Edit_Subject").serialize();
+        $.ajax({
+            url: "/Subject/Save",
+            type: "post",
+            data: data,
+            success: function (result) {
+                $("#SubjectModal").modal("hide");
+                HTML += `
+                    <div class ="alert alert-warning">
+                        <strong>Thành công!<strong> Lưu thành công.
+                    </div>
+                `;
+                location.reload();
+            }
+        });
+    };
+
+    function Show_Create_Edit(type,t) {
+        debugger
+        $("#SubjectModal").modal("show");
+        if (type == 'Add')
+        {
+            $("#txtCodeSubject").val("");
+            $("#txtName").val("");
+            $("#txtDescription").val("");
+            $("#txtStatus").val("");
+            $("#txtType").val("");
+        }
+        else {
+            $.ajax({
+                url: "/Subject/GetById?id=" + t,
+                type: "post",
+                dataType: "json",
+                success: function (item) {
+                    $("#txtCodeSubject").val(item.CodeSubject);
+                    $("#txtName").val(item.Name);
+                    $("#txtDescription").val(item.Description);
+                    $("#txtStatus").val(item.Status);
+                    $("#txtType").val(item.Type);
+                    $("#txtID").val(t);
+                }
+            });
+        }
+
+    };
+</script>

@@ -35,12 +35,14 @@ namespace Education.Models
         public virtual DbSet<Role_Detail> Role_Detail { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<ViewShift> ViewShifts { get; set; }
     
         public virtual ObjectResult<ContactList_Result> ContactList(string code)
         {

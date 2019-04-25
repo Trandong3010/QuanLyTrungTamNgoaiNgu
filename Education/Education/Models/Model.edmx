@@ -106,6 +106,28 @@
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CodeShift" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+          <Property Name="Position" Type="nchar" MaxLength="10" />
+          <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDUser" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CodeStaff" Type="nchar" MaxLength="10" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Student">
@@ -169,7 +191,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="Domicile" Type="nvarchar" MaxLength="50" />
           <Property Name="Language" Type="nvarchar" MaxLength="50" />
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
-          <Property Name="Img" Type="nvarchar" MaxLength="50" />
+          <Property Name="Img" Type="nvarchar(max)" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateTime" Type="datetime" />
@@ -195,6 +217,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyTrungTam.dbo.ViewShift' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewShift">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="TimeBegin" Type="datetime" />
+          <Property Name="Period" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CodeShift" Type="nchar" MaxLength="10" />
+          <Property Name="NameRoom" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Function Name="ContactList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Code" Type="nchar" Mode="In" />
@@ -239,6 +280,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
@@ -260,28 +302,29 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     [Student].[CodeStudent] AS [CodeStudent]
     FROM [dbo].[Student] AS [Student]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewShift" EntityType="Self.ViewShift" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewShift].[ID] AS [ID], 
+    [ViewShift].[Name] AS [Name], 
+    [ViewShift].[Description] AS [Description], 
+    [ViewShift].[Status] AS [Status], 
+    [ViewShift].[IsDelete] AS [IsDelete], 
+    [ViewShift].[TimeBegin] AS [TimeBegin], 
+    [ViewShift].[Period] AS [Period], 
+    [ViewShift].[CreateBy] AS [CreateBy], 
+    [ViewShift].[CreateTime] AS [CreateTime], 
+    [ViewShift].[CodeShift] AS [CodeShift], 
+    [ViewShift].[NameRoom] AS [NameRoom]
+    FROM [dbo].[ViewShift] AS [ViewShift]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyTrungTamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuanLyTrungTamEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
-          <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
-          <EntitySet Name="Contacts" EntityType="QuanLyTrungTamModel.Contact" />
-          <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
-          <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
-          <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
-          <EntitySet Name="Rooms" EntityType="QuanLyTrungTamModel.Room" />
-          <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
-          <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
-          <EntitySet Name="sysdiagrams" EntityType="QuanLyTrungTamModel.sysdiagram" />
-          <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
-          <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
-          <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
-          <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
           <FunctionImport Name="ContactList" ReturnType="Collection(QuanLyTrungTamModel.ContactList_Result)">
-            <Parameter Name="Code" Mode="In" Type="String" />
+          <Parameter Name="Code" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -313,7 +356,40 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
+          <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
+          <EntitySet Name="Contacts" EntityType="QuanLyTrungTamModel.Contact" />
+          <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
+          <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
+          <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
+          <EntitySet Name="Rooms" EntityType="QuanLyTrungTamModel.Room" />
+          <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
+          <EntitySet Name="Staffs" EntityType="QuanLyTrungTamModel.Staff" />
+          <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
+          <EntitySet Name="sysdiagrams" EntityType="QuanLyTrungTamModel.sysdiagram" />
+          <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
+          <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
+          <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
+          <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
+          <EntitySet Name="ViewShifts" EntityType="QuanLyTrungTamModel.ViewShift" />
         </EntityContainer>
+        <ComplexType Name="ContactList_Result">
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
@@ -415,6 +491,28 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Literacy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDUser" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CodeStaff" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="ID" />
@@ -459,7 +557,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
@@ -503,29 +601,63 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CodeStudent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <ComplexType Name="ContactList_Result">
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
+        <EntityType Name="ViewShift">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="TimeBegin" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NameRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuanLyTrungTamModelStoreContainer" CdmEntityContainer="QuanLyTrungTamEntities">
+          <FunctionImportMapping FunctionImportName="ContactList" FunctionName="QuanLyTrungTamModel.Store.ContactList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.ContactList_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QuanLyTrungTamModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QuanLyTrungTamModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QuanLyTrungTamModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QuanLyTrungTamModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QuanLyTrungTamModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QuanLyTrungTamModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QuanLyTrungTamModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="QuanLyTrungTamModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -635,6 +767,29 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="CodeStaff" ColumnName="CodeStaff" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Literacy" ColumnName="Literacy" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="QuanLyTrungTamModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
@@ -729,40 +884,23 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ContactList" FunctionName="QuanLyTrungTamModel.Store.ContactList">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.ContactList_Result">
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QuanLyTrungTamModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QuanLyTrungTamModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QuanLyTrungTamModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QuanLyTrungTamModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QuanLyTrungTamModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QuanLyTrungTamModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
+          <EntitySetMapping Name="ViewShifts">
+            <EntityTypeMapping TypeName="QuanLyTrungTamModel.ViewShift">
+              <MappingFragment StoreEntitySet="ViewShift">
+                <ScalarProperty Name="NameRoom" ColumnName="NameRoom" />
+                <ScalarProperty Name="CodeShift" ColumnName="CodeShift" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="TimeBegin" ColumnName="TimeBegin" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QuanLyTrungTamModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QuanLyTrungTamModel.Store.sp_upgraddiagrams" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

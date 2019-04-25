@@ -101,6 +101,28 @@
     <Property Name="CreateTime" Type="datetime" />
     <Property Name="CodeShift" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDay" Type="datetime" />
+    <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="nchar" MaxLength="10" />
+    <Property Name="Position" Type="nchar" MaxLength="10" />
+    <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDUser" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeStaff" Type="nchar" MaxLength="10" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Student">
@@ -164,7 +186,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     <Property Name="Domicile" Type="nvarchar" MaxLength="50" />
     <Property Name="Language" Type="nvarchar" MaxLength="50" />
     <Property Name="Position" Type="nvarchar" MaxLength="50" />
-    <Property Name="Img" Type="nvarchar" MaxLength="50" />
+    <Property Name="Img" Type="nvarchar(max)" />
     <Property Name="IsDelete" Type="bit" />
     <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
     <Property Name="CreateTime" Type="datetime" />
@@ -190,6 +212,25 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="bit" />
     <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyTrungTam.dbo.ViewShift' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewShift">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="TimeBegin" Type="datetime" />
+    <Property Name="Period" Type="int" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CodeShift" Type="nchar" MaxLength="10" />
+    <Property Name="NameRoom" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Function Name="ContactList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Code" Type="nchar" Mode="In" />
@@ -234,6 +275,7 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     <EntitySet Name="Role_Detail" EntityType="Self.Role_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
@@ -254,6 +296,21 @@ warning 6002: The table/view 'QuanLyTrungTam.dbo.Student' does not have a primar
     [Student].[CreateTime] AS [CreateTime], 
     [Student].[CodeStudent] AS [CodeStudent]
     FROM [dbo].[Student] AS [Student]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewShift" EntityType="Self.ViewShift" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewShift].[ID] AS [ID], 
+    [ViewShift].[Name] AS [Name], 
+    [ViewShift].[Description] AS [Description], 
+    [ViewShift].[Status] AS [Status], 
+    [ViewShift].[IsDelete] AS [IsDelete], 
+    [ViewShift].[TimeBegin] AS [TimeBegin], 
+    [ViewShift].[Period] AS [Period], 
+    [ViewShift].[CreateBy] AS [CreateBy], 
+    [ViewShift].[CreateTime] AS [CreateTime], 
+    [ViewShift].[CodeShift] AS [CodeShift], 
+    [ViewShift].[NameRoom] AS [NameRoom]
+    FROM [dbo].[ViewShift] AS [ViewShift]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

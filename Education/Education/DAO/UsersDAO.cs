@@ -104,6 +104,17 @@ namespace Education.DAO
 			return lst;
 		}
 
+		/// <summary>
+		/// Hồ sơ cá nhân
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		/// 
+		public Object Profile(int id)
+		{
+			var lst = db.Staffs.SingleOrDefault(x => x.IDUser == id);
+			return lst;
+		}
 
 	}
 

@@ -280,6 +280,9 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -296,6 +299,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewShift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -827,6 +833,7 @@
     <Content Include="Areas\Admin\Views\Subject\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Subject\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Subject\SubjectModel.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\ShowProfile.cshtml" />
     <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

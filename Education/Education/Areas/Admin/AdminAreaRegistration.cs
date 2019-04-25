@@ -1,4 +1,4 @@
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Education.Areas.Admin
 {
@@ -12,6 +12,7 @@ namespace Education.Areas.Admin
             }
         }
 
+		
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
@@ -63,6 +64,15 @@ namespace Education.Areas.Admin
 				"Subject",
 				"Admin/Subject",
 			   new { Controller = "Subject", action = "Index", id = UrlParameter.Optional }
+			);
+			/// <summary>
+			/// Hồ sơ cá nhân
+			/// </summary>
+			/// <param name="context"></param>
+			context.MapRoute(
+				"Profile",
+				"Admin/Profile",
+			   new { Controller = "TaiKhoan", action = "ShowProfile", id = UrlParameter.Optional }
 			);
 
 			context.MapRoute(

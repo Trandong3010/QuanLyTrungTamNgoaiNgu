@@ -49,6 +49,18 @@ namespace Education.Areas.Admin.Controllers
 			return Json(lst, JsonRequestBehavior.AllowGet);
 		}
 
+		public ActionResult ShowProfile()
+		{
+			return View();
+		}
+
+		public JsonResult ProfileInfo()
+		{
+			var Id = Session["IDUser"].ToString();
+			var lst =  dao.Profile(int.Parse(Id));
+			return Json(lst, JsonRequestBehavior.AllowGet);
+		}
+
 
 	}
 }

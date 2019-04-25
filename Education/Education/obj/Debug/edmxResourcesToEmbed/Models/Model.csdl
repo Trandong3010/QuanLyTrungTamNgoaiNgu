@@ -1,20 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QuanLyTrungTamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="QuanLyTrungTamEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
-    <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
-    <EntitySet Name="Contacts" EntityType="QuanLyTrungTamModel.Contact" />
-    <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
-    <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
-    <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
-    <EntitySet Name="Rooms" EntityType="QuanLyTrungTamModel.Room" />
-    <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
-    <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
-    <EntitySet Name="sysdiagrams" EntityType="QuanLyTrungTamModel.sysdiagram" />
-    <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
-    <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
-    <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
-    <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
     <FunctionImport Name="ContactList" ReturnType="Collection(QuanLyTrungTamModel.ContactList_Result)">
       <Parameter Name="Code" Mode="In" Type="String" />
     </FunctionImport>
@@ -48,7 +34,40 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Categories" EntityType="QuanLyTrungTamModel.Category" />
+    <EntitySet Name="Classes" EntityType="QuanLyTrungTamModel.Class" />
+    <EntitySet Name="Contacts" EntityType="QuanLyTrungTamModel.Contact" />
+    <EntitySet Name="Permisions" EntityType="QuanLyTrungTamModel.Permision" />
+    <EntitySet Name="Permision_Detail" EntityType="QuanLyTrungTamModel.Permision_Detail" />
+    <EntitySet Name="Role_Detail" EntityType="QuanLyTrungTamModel.Role_Detail" />
+    <EntitySet Name="Rooms" EntityType="QuanLyTrungTamModel.Room" />
+    <EntitySet Name="Shifts" EntityType="QuanLyTrungTamModel.Shift" />
+    <EntitySet Name="Staffs" EntityType="QuanLyTrungTamModel.Staff" />
+    <EntitySet Name="Subjects" EntityType="QuanLyTrungTamModel.Subject" />
+    <EntitySet Name="sysdiagrams" EntityType="QuanLyTrungTamModel.sysdiagram" />
+    <EntitySet Name="Teachers" EntityType="QuanLyTrungTamModel.Teacher" />
+    <EntitySet Name="Users" EntityType="QuanLyTrungTamModel.User" />
+    <EntitySet Name="UserRoles" EntityType="QuanLyTrungTamModel.UserRole" />
+    <EntitySet Name="Students" EntityType="QuanLyTrungTamModel.Student" />
+    <EntitySet Name="ViewShifts" EntityType="QuanLyTrungTamModel.ViewShift" />
   </EntityContainer>
+  <ComplexType Name="ContactList_Result">
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="ID" />
@@ -150,6 +169,28 @@
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDay" Type="DateTime" Precision="3" />
+    <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Literacy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDUser" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CodeStaff" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="Subject">
     <Key>
       <PropertyRef Name="ID" />
@@ -194,7 +235,7 @@
     <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" />
     <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
@@ -238,21 +279,21 @@
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <Property Name="CodeStudent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
-  <ComplexType Name="ContactList_Result">
-    <Property Type="String" Name="Code" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
+  <EntityType Name="ViewShift">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="TimeBegin" Type="DateTime" Precision="3" />
+    <Property Name="Period" Type="Int32" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CodeShift" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NameRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -1,0 +1,87 @@
+﻿<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header no-bd">
+				<h5 class="modal-title">
+					<span class="fw-mediumbold">
+						Tài
+					</span>
+					<span class="fw-light">
+						Khoản
+					</span>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="Add_Edit_Users">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-3 control-label">Tên vai trò</label>
+						<div class="col-sm-12">
+							<input type="hidden" class="form-control" name="ID" id="txtID">
+							<input type="text" class="form-control" name="name" id="txtName" placeholder="Nhập tên vai trò">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="description" id="txtDescription" placeholder="Nhập mô tả">
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary pull-right" onclick="Add_Edit()">Lưu</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.modal -->
+<script>
+	function Add_Edit() {
+		var HTML = ``;
+		var data = $("#Add_Edit_Users").serialize();
+		$.ajax({
+			url: "/UserRole/Save",
+			type: "post",
+			data: data,
+			success: function (result) {
+				//window.location.href = "/Admin/TaiKhoan/Index";
+				$("#Modal1").modal("hide");
+				HTML += `
+						<div class ="alert alert-warning">
+							<strong>Thành công!</strong> Lưu thành công.
+						</div>
+					`;
+				location.reload();
+			}
+		});
+	};
+
+	function Show_Create_Edit(type, t) {
+		debugger
+		$("#addRowModal").modal("show");
+		if (type == 'Add') {
+			$("#txtName").val("");
+			$("#txtDescription").val("");
+		}
+		else {
+			$.ajax({
+				url: "/UserRole/GetUsersRoleById?id=" + t,
+				type: "post",
+				dataType: "json",
+				success: function (item) {
+					$("#txtName").val(item.Name);
+					$("#txtDescription").val(item.Description);
+					$("#txtID").val(t);
+				}
+			});
+		}
+
+	};
+
+</script>
+

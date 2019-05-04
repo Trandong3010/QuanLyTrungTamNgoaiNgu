@@ -17,12 +17,12 @@
 			<div class="modal-body">
 				<form id="Add_Edit_Users">
 					@*<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label"></label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control hidden" name="ID" id="txtID">
+							<label for="inputEmail3" class="col-sm-3 control-label"></label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control hidden" name="ID" id="txtID">
+							</div>
 						</div>
-					</div>
-					<br />*@
+						<br />*@
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-3 control-label">Tên đăng nhập</label>
 						<div class="col-sm-12">
@@ -41,6 +41,19 @@
 						<div class="col-sm-12">
 							<input type="text" class="form-control" name="Email" id="txtEmail" placeholder="Nhập Email">
 						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-3 control-label">Vai trò</label>
+						<div class="col-sm-12">
+							<select name="IDRole" class="form-control">
+								<option value="0">----- Vai trò ----</option>
+								<option value="1">Quản trị viên</option>
+								<option value="2">Quản lý</option>
+								<option value="3">Giáo viên</option>
+								<option value="4">Nhân viên</option>
+							</select>
+						</div>
+
 					</div>
 					<div class="clearfix"></div>
 					<div class="form-group">

@@ -28,7 +28,7 @@ namespace Education.Areas.Admin.Controllers.Phanquyen
 			return Json(new { data = lst }, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult GetUsersById(int id)
+		public JsonResult GetUsersRoleById(int id)
 		{
 			var lst = roledao.GetById(id);
 			return Json(lst, JsonRequestBehavior.AllowGet);

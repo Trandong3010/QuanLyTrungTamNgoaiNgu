@@ -60,23 +60,23 @@
 			</div>
 		</div>
 	</div>
-@*@RenderPage("UserModel.cshtml")
-	@RenderPage("Delete.cshtml")*@
-@section Myscripts{
-	<script>
-		$(document).ready(function Load_danhsach() {
-			$("#dataTable-example").DataTable({
-				ajax: {
-					url: "/UserRole/GetList",
-					type: "Post",
-					datatype: "json"
-				},
-				columns: [
-					{ data: "Name", autowidth: true },
-					{ data: "Description", autowidth: true },
-					{
-						data: "ID", autowidth: true, render: function (data) {
-							return `
+	@RenderPage("Model.cshtml")
+	@RenderPage("Delete.cshtml")
+	@section Myscripts{
+		<script>
+			$(document).ready(function Load_danhsach() {
+				$("#dataTable-example").DataTable({
+					ajax: {
+						url: "/UserRole/GetList",
+						type: "Post",
+						datatype: "json"
+					},
+					columns: [
+						{ data: "Name", autowidth: true },
+						{ data: "Description", autowidth: true },
+						{
+							data: "ID", autowidth: true, render: function (data) {
+								return `
 								 <div class ="col-xs-9 ">
                                      <div class ="col-xs-4 ">
 								@{
@@ -94,7 +94,7 @@
 											</div>
                                          </a>*@
 									}
-                                     
+
 											<a href="#" onclick="ShowDelete(${data})">
 												<button type="button" data-toggle="tooltip" title="" class ="btn btn-link btn-danger" data-original-title="Remove">
 												<i class ="fa fa-times"></i>
@@ -103,43 +103,43 @@
                                      </div>
 								</div>
 								`;
+							}
 						}
-					}
-				],
-				'paging': true,
-				'lengthChange': true,
-				'searching': true,
-				'ordering': true,
-				'info': false,
-				'responsive': true,
-				"scrollY": 300,
+					],
+					'paging': true,
+					'lengthChange': true,
+					'searching': true,
+					'ordering': true,
+					'info': false,
+					'responsive': true,
+					"scrollY": 300,
+				});
 			});
-		});
 
-		function ShowCreate(type, id) {
-			$("#Modal1").modal("show");
-		};
+			function ShowCreate(type, id) {
+				$("#Modal1").modal("show");
+			};
 
-		//function ShowEdit(t) {
-		//	$("#Modal1").modal("show");
-		//	if(t!= 0)
-		//	{
-		//		$.ajax({
-		//			url: "/TaiKhoan/GetUsersById?id=" + t,
-		//			type: "GET",
-		//			datatype: "JSON",
-		//			success: function (value) {
-		//				var obj = JSON.parse(value);
-		//				$("#txtUsername").val(obj.Name);
-		//				$("#txtPassword").val(obj.Name);
-		//				$("#txtEmail").val(obj.Name);
-		//			}
-		//		});
-		//	}
+			//function ShowEdit(t) {
+			//	$("#Modal1").modal("show");
+			//	if(t!= 0)
+			//	{
+			//		$.ajax({
+			//			url: "/TaiKhoan/GetUsersById?id=" + t,
+			//			type: "GET",
+			//			datatype: "JSON",
+			//			success: function (value) {
+			//				var obj = JSON.parse(value);
+			//				$("#txtUsername").val(obj.Name);
+			//				$("#txtPassword").val(obj.Name);
+			//				$("#txtEmail").val(obj.Name);
+			//			}
+			//		});
+			//	}
 
-		//};
-
+			//};
 
 
-	</script>
-}
+
+		</script>
+	}

@@ -83,6 +83,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -91,6 +95,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -200,11 +212,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Phanquyen\PermisionController.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
@@ -219,6 +233,8 @@
     <Compile Include="DAO\BaseDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\ClassDAO.cs" />
+    <Compile Include="DAO\PermisionDAO.cs" />
+    <Compile Include="DAO\PermisionDetailDAO.cs" />
     <Compile Include="DAO\RoomDAO.cs" />
     <Compile Include="DAO\ShiftDAO.cs" />
     <Compile Include="DAO\StudentDAO.cs" />
@@ -834,6 +850,10 @@
     <Content Include="Areas\Admin\Views\Subject\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Subject\SubjectModel.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoan\ShowProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRole\Model.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRole\ShowDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRole\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Permision\Index.cshtml" />
     <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

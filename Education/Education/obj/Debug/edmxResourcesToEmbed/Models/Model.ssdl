@@ -109,10 +109,10 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
-    <Property Name="BirthDay" Type="datetime" />
+    <Property Name="BirthDay" Type="date" />
     <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar(max)" />
-    <Property Name="Gender" Type="nchar" MaxLength="10" />
+    <Property Name="Gender" Type="bit" />
     <Property Name="Position" Type="nchar" MaxLength="10" />
     <Property Name="Literacy" Type="nvarchar" MaxLength="50" />
     <Property Name="IDCard" Type="nvarchar" MaxLength="50" />

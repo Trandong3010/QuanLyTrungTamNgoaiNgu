@@ -68,10 +68,12 @@
 						<div class="collapse" id="base">
 							<ul class="nav nav-collapse">
 								<li>
-									<a href="/Admin/TaiKhoan/">Quản lý người dùng</a>
+									@*<a href="/Admin/TaiKhoan/">Quản lý người dùng</a>*@
+									<a href="TaiKhoan">Quản lý người dùng</a>
 								</li>
 								<li>
-									<a href="/Admin/UserRole/">Cấu hình nhóm quyền</a>
+									@*<a href="/Admin/UserRole/">Cấu hình nhóm quyền</a>*@
+									<a href="/UserRole">Cấu hình nhóm quyền</a>
 								</li>
 								<li>
 									<a href="#">Phân quyền</a>
@@ -139,12 +141,12 @@
 						<div class="collapse" id="maps">
 							<ul class="nav nav-collapse">
 								<li>
-                                    <a href="/Admin/Class/">Quản lý lớp học</a>
+									<a href="/Admin/Class/">Quản lý lớp học</a>
 								</li>
-                                <li>
-                                    <a href="/Admin/Room/">Quản lý phòng học</a>
-                                </li>
-                                <li>
+								<li>
+									<a href="/Admin/Room/">Quản lý phòng học</a>
+								</li>
+								<li>
 									<a href="#">Quản lý khóa học</a>
 								</li>
 								<li>
@@ -234,8 +236,11 @@
 					</li>*@
 			}
 			@*<li class="mx-4 mt-2">
-				<a href="" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span></a>
-			</li>*@
+					<a href="" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span></a>
+				</li>*@
 		</ul>
 	</div>
 </div>
+@section Scripts{
+<script src="~/Scripts/Angularjs/Routing.js"></script>
+}

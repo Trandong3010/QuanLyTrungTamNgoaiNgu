@@ -37,8 +37,9 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="~/Content/AdminLTE3/assets/css/demo.css">
 	<link href="~/Content/AdminLTE3/plugins/Spin/spin.css" rel="stylesheet" />
+	<link href="~/Content/AdminLTE3/assets/css/preloader.css" rel="stylesheet" />
 </head>
-<body>
+<body data-ng-app="MyApp">
 
 	<div class="wrapper">
 		<div class="main-header">
@@ -50,7 +51,33 @@
 		</div>
 		<div class="main-panel">
 			<div class="content">
+
+				<!--
+				Start Preloader
+				==================================== -->
+				<div id="preloader">
+					<div class="preloader">
+						<div class="sk-circle1 sk-child"></div>
+						<div class="sk-circle2 sk-child"></div>
+						<div class="sk-circle3 sk-child"></div>
+						<div class="sk-circle4 sk-child"></div>
+						<div class="sk-circle5 sk-child"></div>
+						<div class="sk-circle6 sk-child"></div>
+						<div class="sk-circle7 sk-child"></div>
+						<div class="sk-circle8 sk-child"></div>
+						<div class="sk-circle9 sk-child"></div>
+						<div class="sk-circle10 sk-child"></div>
+						<div class="sk-circle11 sk-child"></div>
+						<div class="sk-circle12 sk-child"></div>
+					</div>
+				</div>
+				<!--
+				End Preloader
+				==================================== -->
+
+
 				@RenderBody()
+				<div ng-view></div>
 			</div>
 			<footer class="footer">
 				@RenderPage("../AdminLTE3/_Footer.cshtml")
@@ -101,9 +128,15 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="~/Content/AdminLTE3/assets/js/setting-demo.js"></script>
-	<script src="~/Content/AdminLTE3/assets/js/demo.js"></script>
 
-	<script src="~/Content/AdminLTE3/plugins/Spin/spin.js"></script>
+	<script src="~/Content/AdminLTE3/assets/js/Loader.js"></script>
+
+	<!--Angular js-->
+	<script src="~/Scripts/Angularjs/lib/angular.js"></script>
+	<script src="~/Scripts/Angularjs/lib/angular-route.js"></script>
+	<script src="~/Scripts/Angularjs/MyApp.js"></script>
+	<!---->
+
 	<script>
 		Circles.create({
 			id: 'circles-1',

@@ -326,6 +326,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminLTE3\assets\css\preloader.css" />
+    <Content Include="Content\AdminLTE3\assets\js\Loader.js" />
     <Content Include="Content\Back-end\dist\css\admin-min.css" />
     <Content Include="Content\Back-end\dist\css\admin.css" />
     <Content Include="Content\Back-end\dist\css\style.css" />
@@ -799,6 +801,8 @@
     <Content Include="Content\Back-end\vendor\flot\jquery.flot.threshold.js" />
     <Content Include="Content\Back-end\vendor\flot\jquery.flot.time.js" />
     <Content Include="Content\Back-end\vendor\flot\jquery.js" />
+    <Content Include="Scripts\Angularjs\MyApp.js" />
+    <Content Include="Scripts\Angularjs\Routing.js" />
     <Content Include="Scripts\React\lib\browser.min.js" />
     <Content Include="Scripts\React\lib\react-dom.development.js" />
     <Content Include="Scripts\React\lib\react.development.js" />
@@ -878,10 +882,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\ai.0.22.9-build00167.js" />
-    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -904,18 +904,7 @@
     <Content Include="Areas\Admin\Views\TrangChu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserRole\Index.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\React\Student\Student1.jsx" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -958,10 +947,10 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Scripts\" />
-    <Folder Include="Content\AdminLTE3\assets\" />
     <Folder Include="Content\AdminLTE3\dist\" />
     <Folder Include="Content\AdminLTE3\plugins\" />
     <Folder Include="Content\Front-end\" />
+    <Folder Include="Scripts\Angularjs\lib\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -969,11 +958,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\AdminLTE3\assets\js\preloader.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

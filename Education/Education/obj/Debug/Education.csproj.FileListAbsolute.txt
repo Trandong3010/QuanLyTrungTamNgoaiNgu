@@ -418,3 +418,9 @@ E:\tailieu\Nam4\HKII\LapTrinhWebNangCao\BaiNhom1\Bài mới nhất\nhom1_ctk39\E
 E:\tailieu\Nam4\HKII\LapTrinhWebNangCao\BaiNhom1\Bài mới nhất\nhom1_ctk39\Education\Education\bin\Education.dll.config
 E:\tailieu\Nam4\HKII\LapTrinhWebNangCao\BaiNhom1\Bài mới nhất\nhom1_ctk39\Education\Education\bin\Education.dll
 E:\tailieu\Nam4\HKII\LapTrinhWebNangCao\BaiNhom1\Bài mới nhất\nhom1_ctk39\Education\Education\bin\Education.pdb
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Net.Http.Formatting.dll
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Web.Http.dll
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Web.Http.WebHost.dll
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Net.Http.Formatting.xml
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Web.Http.xml
+D:\Các dự án đang làm\Lập trình web nâng cao\nhom1_ctk39\Education\Education\bin\System.Web.Http.WebHost.xml

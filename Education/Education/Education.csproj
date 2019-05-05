@@ -222,6 +222,7 @@
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubjectController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="DAO\PermisionDetailDAO.cs" />
     <Compile Include="DAO\RoomDAO.cs" />
     <Compile Include="DAO\ShiftDAO.cs" />
+    <Compile Include="DAO\StaffDAO.cs" />
     <Compile Include="DAO\StudentDAO.cs" />
     <Compile Include="DAO\SubjectDAO.cs" />
     <Compile Include="DAO\TeacherDAO.cs" />
@@ -854,6 +856,9 @@
     <Content Include="Areas\Admin\Views\UserRole\ShowDetail.cshtml" />
     <Content Include="Areas\Admin\Views\UserRole\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Permision\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Add_Edit_Model.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
     <None Include="Scripts\React\Student\Student.jsx" />
     <Content Include="Areas\Admin\Views\Shift\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />

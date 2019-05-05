@@ -1,0 +1,178 @@
+﻿
+<div class="modal fade" id="StaffModel">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-bd">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">
+                        Nhân viên
+                    </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="Add_Edit_Staff">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mã nhân viên</label>
+                        <div class="col-sm-12">
+                            <input type="hidden" class="form-control" name="ID" id="txtID">
+                            <input type="text" class="form-control" name="CodeStaff" id="txtCodeStaff" placeholder="Nhập mã nhân viên">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Tên nhân viên</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên nhân viên">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Địa chỉ</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Address" id="txtAddress" placeholder="Nhập địa chỉ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Ngày sinh</label>
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control" name="BirthDay" id="txtBirthDay" placeholder="Nhập ngày sinh">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Nơi sinh</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="BirthPlace" id="txtBirthPlace" placeholder="Nhập nơi sinh">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Giới tính</label>
+                        <div class="col-sm-12">
+                            <select name="Gender" id="txtGender">
+                                <option value="1">Nam</option>
+                                <option value="0">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chức vụ</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Position" id="txtPosition" placeholder="Nhập chức vụ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Trình độ</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="Literacy" id="txtLiteracy" placeholder="Nhập trình độ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">CMND</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="IDCard" id="txtIDCard" placeholder="Nhập số chứng minh nhân dân">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mã người dùng</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="IDUser" id="txtIDUser" placeholder="Nhập mã người dùng">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-12">
+                            <select name="Status" id="txtStatus">
+                                <option value="0">Đang làm</option>
+                                <option value="1">Nghỉ phép</option>
+                                <option value="2">Nghỉ việc</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right" onclick="Add_Edit()">Lưu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    function Add_Edit() {
+        var HTML = ``;
+        var data = $("#Add_Edit_Staff").serialize();
+        $.ajax({
+            url: "/Staff/Save",
+            type: "post",
+            data: data,
+            success: function (result) {
+                $("#StaffModel").modal("hide");
+                HTML += `
+                    <div class ="alert alert-warning">
+                        <strong>Thành công!<strong> Lưu thành công.
+                    </div>
+                `;
+                location.reload();
+            }
+        });
+    };
+
+    function Show_Create_Edit(type, t) {
+        $("#StaffModel").modal("show");
+        if (type == 'Add') {
+            $("#txtCodeStaff").val("");
+            $("#txtName").val("");
+            $("#txtDescription").val("");
+            $("#txtAddress").val("");
+            $("#txtBirthDay").val("2000-01-01");
+            $("#txtBirthPlace").val("");
+            $("#txtGender").val("1");
+            $("#txtPosition").val("");
+            $("#txtLiteracy").val("");
+            $("#txtIDCard").val("");
+            $("#txtIDUser").val("");
+            $("#txtStatus").val("0");
+
+        }
+        else {
+            $.ajax({
+                url: "/Staff/GetStaffById?id=" + t,
+                type: "post",
+                dataType: "json",
+                success: function (item) {
+                    debugger
+                    $("#txtCodeStaff").val(item.CodeStaff);
+                    $("#txtName").val(item.Name);
+                    $("#txtDescription").val(item.Description);
+                    $("#txtAddress").val(item.Address);
+                    var value = new Date(parseInt(item.BirthDay.substr(6)));
+                    var ret = value.getFullYear() + "-" + ((value.getMonth() + 1) < 10 ? "0" + (value.getMonth() + 1) : value.getMonth() + 1) + "-" + (value.getDate() < 10 ? "0" + value.getDate() : value.getDate());
+                    $("#txtBirthDay").val(ret);
+                    $("#txtBirthPlace").val(item.BirthPlace);
+                    $("#txtGender").val(item.Gender?1:0);
+                    $("#txtPosition").val(item.Position);
+                    $("#txtLiteracy").val(item.Literacy);
+                    $("#txtIDCard").val(item.IDCard);
+                    $("#txtIDUser").val(item.IDUser);
+                    $("#txtStatus").val(item.Status);
+                    $("#txtID").val(t);
+                }
+            });
+        }
+
+    };
+
+</script>
+

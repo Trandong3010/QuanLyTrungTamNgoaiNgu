@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class ClassController : Controller
+    public class ClassController : BaseController
     {
         //
         // GET: /Admin/Class/
@@ -18,7 +18,14 @@ namespace Education.Areas.Admin.Controllers
         {
             var classes = dao.GetList();
             ViewBag.classes = classes;
-            return View();
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
         }
 
         public JsonResult GetClass()

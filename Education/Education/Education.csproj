@@ -214,10 +214,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NoCache.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\PermisionController.cs" />
     <Compile Include="Areas\Admin\Controllers\Phanquyen\UserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
@@ -947,6 +949,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Scripts\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Content\AdminLTE3\dist\" />
     <Folder Include="Content\AdminLTE3\plugins\" />
     <Folder Include="Content\Front-end\" />

@@ -19,8 +19,15 @@ namespace Education.Areas.Admin.Controllers.Phanquyen
 			var IDPermision = dao.GetByIDPermision(int.Parse(Id)).ToString();
 			var Permision = dao.GetPermision(int.Parse(IDPermision));
 			ViewBag.Permision = Permision;
-			return View();
-        }
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
+		}
 		[HttpPost]
 		public JsonResult GetList()
 		{
@@ -47,6 +54,25 @@ namespace Education.Areas.Admin.Controllers.Phanquyen
 		{
 			var lst = roledao.Delete(id);
 			return Json(lst, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public JsonResult ShowMenuAdmin()
+		{
+			int x = 0;
+			if (Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+			{
+				x = 1;
+			}
+			else if (Session["RoleName"].ToString() == "TE" || Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+			{
+				x = 2;
+			}
+			else if (Session["RoleName"].ToString() == "EM" || Session["RoleName"].ToString() == "AD" || Session["RoleName"].ToString() == "MA")
+			{
+				x = 3;
+			}
+			return Json(x, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

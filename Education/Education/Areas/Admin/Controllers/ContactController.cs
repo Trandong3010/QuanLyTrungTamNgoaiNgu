@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         // GET: Admin/Contact
         public ActionResult Index()
         {
-            return View();
-        }
+				return View();
+		}
     }
 }

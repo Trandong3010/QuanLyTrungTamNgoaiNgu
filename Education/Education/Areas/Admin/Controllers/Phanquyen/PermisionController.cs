@@ -11,8 +11,15 @@ namespace Education.Areas.Admin.Controllers.Phanquyen
         // GET: Admin/Permision
         public ActionResult Index()
         {
-            return View();
-        }
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
+		}
 
 
     }

@@ -8,19 +8,19 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class TaiKhoanController : Controller
-    {
+	public class TaiKhoanController : BaseController
+	{
 		UsersDAO dao = new UsersDAO();
 		QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
 		// GET: Admin/TaiKhoan
 		public ActionResult Index()
-        {
+		{
 			var Id = Session["IDUser"].ToString();
 			var IDPermision = dao.GetByIDPermision(int.Parse(Id)).ToString();
 			var Permision = dao.GetPermision(int.Parse(IDPermision));
 			ViewBag.Permision = Permision;
 			return View();
-        }
+		}
 
 		public JsonResult GetUsers()
 		{
@@ -39,10 +39,10 @@ namespace Education.Areas.Admin.Controllers
 		{
 			bool status = false;
 			dao.Save(item);
-			return new JsonResult{ Data = new {status = status } };
+			return new JsonResult { Data = new { status = status } };
 
 		}
-        
+
 		public JsonResult Delete(int id)
 		{
 			var lst = dao.Delete(id);
@@ -57,10 +57,9 @@ namespace Education.Areas.Admin.Controllers
 		public JsonResult ProfileInfo()
 		{
 			var Id = Session["IDUser"].ToString();
-			var lst =  dao.Profile(int.Parse(Id));
+			var lst = dao.Profile(int.Parse(Id));
 			return Json(lst, JsonRequestBehavior.AllowGet);
 		}
-
 
 	}
 }

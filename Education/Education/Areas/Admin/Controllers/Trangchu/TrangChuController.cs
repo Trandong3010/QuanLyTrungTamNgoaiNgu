@@ -6,20 +6,14 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers.Trangchu
 {
-    public class TrangChuController : Controller
+	public class TrangChuController : BaseController
     {
-        // GET: Admin/TrangChu
-        public ActionResult Index()
+		// GET: Admin/TrangChu
+		[NoCache]
+		public ActionResult Index()
         {
-			if (Session["Username"].ToString() != null)
-			{
 				return View();
-			}
-			else
-			{
-				return RedirectToAction("Index", "Login");
-			}
-			//return View();
+			
 		}
 	}
 }

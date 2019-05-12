@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace Education.Areas.Admin.Controllers
 {
-    public class TeacherController : Controller
+    public class TeacherController : BaseController
     {
         TeacherDAO dao = new TeacherDAO();
+
         [HttpPost]
         public JsonResult GetList()
         {
@@ -19,8 +20,15 @@ namespace Education.Areas.Admin.Controllers
         // GET: Admin/Teacher
         public ActionResult Index()
         {
-            return View();
-        }
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
+		}
 		[HttpPost]
 		public JsonResult GetTeacherById(int id)
 		{

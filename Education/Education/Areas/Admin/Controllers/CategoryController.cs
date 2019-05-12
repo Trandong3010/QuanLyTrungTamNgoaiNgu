@@ -8,15 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 namespace Education.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         // GET: Admin/Category
         CategoryDAO dao = new CategoryDAO();
         QuanLyTrungTamEntities db = new QuanLyTrungTamEntities();
         public ActionResult Index()
         {
-            return View();
-        }
+			if (Session["Username"].ToString() != null)
+			{
+				return View();
+			}
+			else
+			{
+				return RedirectToAction("Index", "Login");
+			}
+		}
 
 
         public JsonResult GetCategory()

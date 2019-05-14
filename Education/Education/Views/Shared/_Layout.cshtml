@@ -1,45 +1,62 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+		  rel="stylesheet">
+
+	<!-- Bootstrap CSS File -->
+	<link href="~/Content/Front-end/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Libraries CSS Files -->
+	<link href="~/Content/Front-end/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="~/Content/Front-end/lib/animate/animate.min.css" rel="stylesheet">
+
+	<!-- Main Stylesheet File -->
+	<link href="~/Content/Front-end/css/style.css" rel="stylesheet">
+	<link href="~/Content/Front-end/css/login.css" rel="stylesheet">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-					<li><a href="/Admin/Login">Login</a></li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+	@RenderPage("../Block/_Header.cshtml")
+	@RenderBody()
+	
+	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+	@RenderPage("../Accout/Login.cshtml")
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+	<!-- JavaScript Libraries -->
+	<script src="~/Content/Front-end/lib/jquery/jquery.min.js"></script>
+	<script src="~/Content/Front-end/lib/jquery/jquery-migrate.min.js"></script>
+	<script src="~/Content/Front-end/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Content/Front-end/lib/easing/easing.min.js"></script>
+	<script src="~/Content/Front-end/lib/wow/wow.min.js"></script>
+
+	<script src="~/Content/Front-end/lib/waypoints/waypoints.min.js"></script>
+	<script src="~/Content/Front-end/lib/counterup/counterup.min.js"></script>
+	<script src="~/Content/Front-end/lib/superfish/hoverIntent.js"></script>
+	<script src="~/Content/Front-end/lib/superfish/superfish.min.js"></script>
+
+	<!-- Template Main Javascript File -->
+	<script src="~/Content/Front-end/js/main.js"></script>
+	<script>
+
+		var y = document.getElementById("GoogleMaps");
+		$(document).ready(function showPosition() {
+			var a = 11.9541612;
+			var b = 108.4454205;
+			y.src = "https://www.google.com/maps/embed/v1/place?q=" + a + "," + b + "&key=AIzaSyBJnTMmn2I8N62g7KseZ0CEOhODKjB6AwM";
+		});
+	</script>
+
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 </body>
 </html>

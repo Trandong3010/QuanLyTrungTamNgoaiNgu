@@ -1,0 +1,59 @@
+.modal-body {
+	background: url("../img/b2.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	color: #FFF;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.modal-body a {
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	text-decoration: none;
+}
+
+.modal-body h1 {
+    font-size: 45px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 7px;
+    margin: 65px auto;
+}
+
+input[type="text"], input[type="password"]{
+	width: 100%;
+	padding: 15px 10px 15px;
+	font-size: 14px;
+	background: transparent;
+	border: 2px solid #45c0f8;
+	outline: none;
+	margin-bottom: 26px;
+	color: #fff;
+	font-family: 'Quicksand', sans-serif;
+}
+
+button[type="button"] {
+    width: 100%;
+	font-size: 16px;
+	padding: 10px 65px;
+	background-color: #45c0f8;
+	color: #FFF;
+	border: none;
+	border-radius: 0px;
+	outline: none;
+	float:none;
+    cursor: pointer;
+}
+
+button[type="button"]:hover {
+	background-color: #45c0f8;
+	color: #FFF;
+}

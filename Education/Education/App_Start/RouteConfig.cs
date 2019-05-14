@@ -16,7 +16,19 @@ namespace Education
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+				defaults: new { controller = "Home_", action = "Index", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
+				 name: "TrangChu",
+				 url: "trang-chu",
+				 defaults: new { Controller = "~/Home_", action = "Index", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
+				name: "LienHe",
+				url: "lien-he",
+				defaults: new { controller = "~/Contact_", action = "Index", id = UrlParameter.Optional }
 			);
 		}
 	}

@@ -231,6 +231,7 @@
     <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trangchu\TrangChuController.cs" />
     <Compile Include="Controllers\AccoutController.cs" />
+    <Compile Include="Controllers\Calender_Controller.cs" />
     <Compile Include="Controllers\Contact_Controller.cs" />
     <Compile Include="Controllers\Home_Controller.cs" />
     <Compile Include="DAO\BaseDAO.cs" />
@@ -432,6 +433,7 @@
     <Content Include="Views\Home_\Index.cshtml" />
     <Content Include="Views\Accout\Login.cshtml" />
     <Content Include="Views\Contact_\Index.cshtml" />
+    <Content Include="Views\Calender_\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

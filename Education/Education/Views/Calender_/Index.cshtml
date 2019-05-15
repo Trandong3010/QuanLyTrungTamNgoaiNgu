@@ -1,0 +1,253 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main style="margin-top:15%;">
+
+	<section id="calendar-learning">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 content order-lg-1 order-2">
+					<h2 class="title">LỊCH HỌC</h2>
+					<p>
+						Để biết lịch học, vui lòng chọn khoá học, thành phố bạn đang sống và trung tâm bạn muốn học..
+					</p>
+					<div class="row">
+						<div class="col-lg-3 col-md-6 wow fadeInUp portfolio-item" data-wow-delay="0.2s">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Khoá học (*)</option>
+											<option>Option 2</option>
+											<option>Option  3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 fadeInUp">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Thành phố (*)</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Trung tâm gần nhất</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<button type="button" class="btn btn-primary">TÌM HIỂU THÊM</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+	</section>
+
+	<section id="filter">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 content order-lg-1 order-2">
+					<div class="row">
+						<div class="col-lg- col-md-6 fadeInUp">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Trình độ</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-md-6 fadeInUp">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Thời gian</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<select class="form-control">
+											<option>Trạng thái</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+							<div class="box">
+								<div class="details">
+									<div class="form-group">
+										<button type="button" class="btn btn-primary">BỘ LỌC</button>
+										<button type="button" class="btn btn-primary">LÀM MỚI</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 content order-lg-1 order-2 wow fadeInUp">
+					<div class="card">
+						<div class="card-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">MÃ SỐ LỚP</th>
+										<th scope="col">TỔNG SỐ TUẦN</th>
+										<th scope="col">NGÀY HỌC</th>
+										<th scope="col">THỜI GIAN</th>
+										<th scope="col">NGÀY KHAI GIẢNG</th>
+										<th scope="col">TRẠNG THÁI</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<a href="" class="btn btn-danger" data-toggle="modal"
+											   data-target="#addRowModal">Đăng ký</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+	</section>
+
+	<section>
+		<!--Đăng nhập-->
+		<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header no-bd">
+						<h5 class="modal-title">
+							<span class="fw-mediumbold">
+								ĐĂNG KÝ NGAY LỚP HỌC THỬ
+							</span>
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Tên học viên</label>
+										<input id="addName" type="text" class="form-control"
+											   placeholder="Tên học viên">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Số điện thoại</label>
+										<input id="addName" type="text" class="form-control" placeholder="Số điện thoại">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Tên đăng nhập</label>
+										<input id="addName" type="text" class="form-control"
+											   placeholder="Tên đăng nhập">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Mật khẩu</label>
+										<input id="addName" type="text" class="form-control" placeholder="Mật khẩu">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Trung tâm</label>
+										<select class="form-control">
+											<option>Trung tâm</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-default">
+										<label>Khóa học</label>
+										<select class="form-control">
+											<option>Thành phố</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12 pr-0">
+									<div class="form-group form-group-default">
+										<button type="button" class="btn btn-primary">Đăng ký ngay</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</main>
+

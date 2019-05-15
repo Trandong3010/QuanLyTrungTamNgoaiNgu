@@ -12,68 +12,59 @@
                 <form id="Add_Edit_Subject">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label"></label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                        <div class="col-sm-12">
+                            <input type="hidden" class="form-control hidden" name="ID" id="txtID">
                         </div>
                     </div>
-                    <br />
-                    \<br />
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">
                             Mã môn học
                         </label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control hidden" name="ID" id="txtID">
+                        <div class="col-sm-12">
                             <input type="text" class="form-control" name="CodeSubject" id="txtCodeSubject" placeholder="Nhập mã ">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">
                             Tên môn học
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <input type="text" class="form-control" name="Name" id="txtName" placeholder="Nhập tên ">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <input type="text" class="form-control" name="Description" id="txtDescription" placeholder="Nhập mô tả">
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Trạng thái</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <select name="Status" id="txtStatus">
-                                <option value="0">Đang hoạt động</option>
-                                <option value="1">Ngừng hoạt động</option>
+                                <option value="1">Đang hoạt động</option>
+                                <option value="0">Ngừng hoạt động</option>
                             </select>
-                            @*<input type="text" class="form-control" name="Status" id="txtStatus" placeholder="Nhập trạng thái">*@
                         </div>
                     </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label">Kiểu</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <input type="text" class="form-control" name="Type" id="txtType" placeholder="Nhập kiểu">
                         </div>
                     </div>
-                    <br />
-                    <br />
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chương trình học</label>
+                        <div class="col-sm-12">
+                            <select name="Category" id="Category">
+                            </select>
+                        </div>
+                    </div>
                     <div class="clearfix"></div>
                     <div class="form-group">
                         <button type="button" class="btn pull-left btn-flat btn-danger" data-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-primary btn-flat" onclick="Add_Edit()">Lưu</button>
                     </div>
-                    <br />
-                    <br />
                 </form>
             </div>
 
@@ -85,6 +76,23 @@
 </div>
 <!-- /.modal -->
 <script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Category/GetCategory",
+            type: "POST",
+            datatype: "json",
+            success: function (data) {
+                if (data) {
+                    var select = $("#Category");
+                    select.find('option').remove();
+                    $.each(data,function(index , value)
+                    {
+                        select.append('<option value='+value.ID+'>'+value.Name+'</option>'); // return empty
+                    });
+                }
+            }
+        });        
+    });
     function Add_Edit() {
         debugger
         var HTML = ``;
@@ -113,7 +121,7 @@
             $("#txtCodeSubject").val("");
             $("#txtName").val("");
             $("#txtDescription").val("");
-            $("#txtStatus").val("");
+            $("#txtStatus").val("1");
             $("#txtType").val("");
         }
         else {
